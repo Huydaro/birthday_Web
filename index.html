@@ -15,7 +15,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #c6c6c6, #f3e5f5);
+            background: linear-gradient(135deg, #e3e3e3, #f3e5f5);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -33,33 +33,46 @@
             overflow: hidden;
         }
 
-     header {
-  position: relative;
-  color: white;
-  padding: 25px;
-  text-align: center;
-  overflow: hidden; /* កុំឲ្យ layer លេចចេញក្រៅ */
-}
+        header {
+            position: relative;
+            color: rgb(255, 255, 255);
+            padding: 25px;
+            text-align: center;
+            overflow: hidden;
+            /* កុំឲ្យ layer លេចចេញក្រៅ */
+        }
 
-header::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcqy1YzX0tsuMQNDgz3JBW9yGyUGC9pixYsQ&s);
-  background-size: cover;
-  background-position: center;
-  filter: blur(1px); /* បន្ថយភាពច្បាស់ */
-  z-index: 0;
-}
+        header h1 {
+            text-shadow: 2px 2px 6px rgb(43, 153, 163);
+            /* ស្រមោលក្រោយអក្សរ */
+        }
 
-header h1, header p {
-  position: relative;
-  z-index: 1; /* អក្សរនៅលើ មិន blur */
-}
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcqy1YzX0tsuMQNDgz3JBW9yGyUGC9pixYsQ&s);
+            background-size: cover;
+            background-position: center;
+            filter: blur(1px);
+            /* បន្ថយភាពច្បាស់ */
+            z-index: 1;
+        }
+
+        header h1,
+        header p {
+            position: relative;
+            z-index: 1;
+            /* អក្សរនៅលើ មិន blur */
+        }
 
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.1rem;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -82,17 +95,17 @@ header h1, header p {
         }
 
         .result-section {
-            background-color: #f9f9f9;
+            background-color: #ffffff;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgb(198, 244, 255);
         }
 
         h2 {
-            color: #9c27b0;
+            color: #43a0a5;
             margin-bottom: 20px;
             font-size: 1.8rem;
-            border-bottom: 2px solid #e91e63;
+            border-bottom: 2px solid #2247af;
             padding-bottom: 10px;
         }
 
@@ -101,7 +114,7 @@ header h1, header p {
             padding: 30px;
             border-radius: 15px;
             background: linear-gradient(135deg, #ffebee, #fce4ec);
-            border: 3px dashed #e91e63;
+            border: 3px dashed #bb5308;
             /* កំណត់ឱ្យបង្ហាញភ្លាមៗ */
             display: block;
             transform: scale(1);
@@ -110,7 +123,7 @@ header h1, header p {
 
         .birthday-text {
             font-size: 2rem;
-            color: #d81b60;
+            color: #11d445;
             margin-bottom: 20px;
             line-height: 1.4;
             animation: textPulse 2s infinite;
@@ -131,7 +144,7 @@ header h1, header p {
         }
 
         .countdown-item {
-            background-color: #e91e63;
+            background-color: #e91e8a;
             color: white;
             padding: 15px;
             border-radius: 10px;
@@ -290,7 +303,8 @@ header h1, header p {
 <body>
     <div class="container">
         <header>
-            <h1>រីករាយថ្ងៃកំណើត ស៊ុយ សេរីកាន់ន្និកា</h1>
+            <h1>រីករាយថ្ងៃកំណើត   </h1>
+            <h1>ស៊ុយ សេរីកាន់ន្និកា</h1>
             <div class="subtitle">ការរាប់ថយក្រោយសម្រាប់ថ្ងៃទី 17 ខែធ្នូ ឆ្នាំ 2025</div>
         </header>
 

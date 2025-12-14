@@ -33,19 +33,30 @@
             overflow: hidden;
         }
 
-        header {
-            /* background: linear-gradient(to right, #433ec8, #cc4097); */
-            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcqy1YzX0tsuMQNDgz3JBW9yGyUGC9pixYsQ&s);
-            background-size: cover;          /* ធ្វើឲ្យរូបភាពបង្ហាញពេញទំហំ */
- 
+     header {
+  position: relative;
+  color: white;
+  padding: 25px;
+  text-align: center;
+  overflow: hidden; /* កុំឲ្យ layer លេចចេញក្រៅ */
+}
 
-    background-position: center;     /* ដាក់រូបភាពចំកណ្តាល */
+header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcqy1YzX0tsuMQNDgz3JBW9yGyUGC9pixYsQ&s);
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px); /* បន្ថយភាពច្បាស់ */
+  z-index: 0;
+}
 
+header h1, header p {
+  position: relative;
+  z-index: 1; /* អក្សរនៅលើ មិន blur */
+}
 
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
 
         h1 {
             font-size: 2.5rem;

@@ -188,6 +188,7 @@
 
         /* Animations */
         @keyframes bounceIn {
+
             0% {
                 transform: scale(0.3);
                 opacity: 0;
@@ -386,12 +387,12 @@
                     // លក្ខខណ្ឌថ្ងៃកំណើតពិសេស (17/12/2025)
                     const age = today.getFullYear() - BIRTH_YEAR;
                     birthdayText.innerHTML = `
-                        <span class="jumping-text">រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 17/ December /2025</span><br>
-                        សូមឲ្យអូនមានកម្លាំងក្នុងចិត្ត សុខភាពល្អ និងមនុស្សល្អៗនៅជុំវិញ🎉<br>
-                        អ្វីដែលធ្លាប់ឈឺ សូមឲ្យវាស្ងប់<br><br>
-                        <span class="jumping-text">ឲ្យអូនរស់នៅក្នុងឆ្នាំថ្មីខាងមុខនេះចាប់ពីរនេះតទៅដោយចិត្តដូចទឹក ស្ងប់</span><br>
-                        ស្រាល និងច្បាស់ ហើយគ្រប់ជំហាននឹងនាំអូនទៅកាន់អ្វីល្អជាងមុន សូមឪ្យគ្រប់ជំហ៊ានរបស់អូននិងនាំទៅរកអ្វីដែលប្រសើជាងមុននៃជីវិតមួយនេះ!
-                    `;
+						<span class="jumping-text">រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 17/ December /2025</span><br>
+						សូមឲ្យអូនមានកម្លាំងក្នុងចិត្ត សុខភាពល្អ និងមនុស្សល្អៗនៅជុំវិញ🎉<br>
+						អ្វីដែលធ្លាប់ឈឺ សូមឲ្យវាស្ងប់<br><br>
+						<span class="jumping-text">ឲ្យអូនរស់នៅក្នុងឆ្នាំថ្មីខាងមុខនេះចាប់ពីរនេះតទៅដោយចិត្តដូចទឹក ស្ងប់</span><br>
+						ស្រាល និងច្បាស់ ហើយគ្រប់ជំហាននឹងនាំអូនទៅកាន់អ្វីល្អជាងមុន សូមឪ្យគ្រប់ជំហ៊ានរបស់អូននិងនាំទៅរកអ្វីដែលប្រសើជាងមុននៃជីវិតមួយនេះ!
+					`;
                     countdown.style.display = 'none';
                     createConfetti();
                     if (window.birthdayCountdownInterval) {
@@ -402,9 +403,9 @@
                     const daysUntilBirthday = calculateDaysUntil(nextBirthdayDate);
 
                     birthdayText.innerHTML = `
-                        ថ្ងៃកំណើតរបស់អូនគឺនៅ ${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}<br>
-                        នឹងមកដល់ក្នុងរយៈពេល <span class="jumping-text">ប៉ុន្មាន</span> ម៉ោងទៀតប៉ុណ្ណោះ!
-                    `;
+						ថ្ងៃកំណើតរបស់អូនគឺនៅ ${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}<br>
+						នឹងមកដល់ក្នុងរយៈពេល <span class="jumping-text">ប៉ុន្មាន</span> ម៉ោងទៀតប៉ុណ្ណោះ!
+					`;
 
                     countdown.style.display = 'flex';
 
@@ -450,8 +451,9 @@
 
                 daysEl.textContent = days;
                 hoursEl.textContent = hours;
-                minutesEl.textContent = minutes;
-                secondsEl.textContent = seconds;
+                hoursEl.textContent = hours.toString().padStart(2, '0'); // បន្ថែម 0 ខាងមុខ
+                minutesEl.textContent = minutes.toString().padStart(2, '0'); // បន្ថែម 0 ខាងមុខ
+                secondsEl.textContent = seconds.toString().padStart(2, '0'); // បន្ថែម 0 ខាងមុខ
             }
 
             // មុខងារ Confetti និង Mini Confetti (ដូចដើម)
@@ -504,9 +506,73 @@
                     }
                 }, animationDuration * 1000);
             }
+
+            // =======================================================
+            // 🎧 កូដបន្ថែមតន្ត្រី Background Music (ដាក់នៅទីនេះ)
+            // =======================================================
+
+            // 1. បង្កើត Audio Element និងប៊ូតុង
+            const bgMusic = document.createElement('audio');
+            bgMusic.id = 'bgMusic';
+            bgMusic.src = 'music/Happy.mp3'; // ត្រូវប្រាកដថា Path នេះត្រឹមត្រូវ!
+            bgMusic.loop = true;
+            bgMusic.preload = 'auto';
+            document.body.appendChild(bgMusic);
+
+            const musicBtn = document.createElement('button');
+            musicBtn.id = 'musicBtn';
+            musicBtn.setAttribute('aria-label', 'Play or pause background music');
+            musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
+
+            // កូដ CSS សម្រាប់ប៊ូតុង
+            musicBtn.style.position = 'fixed';
+            musicBtn.style.right = '20px';
+            musicBtn.style.bottom = '20px';
+            musicBtn.style.zIndex = '1001';
+            musicBtn.style.padding = '10px 14px';
+            musicBtn.style.borderRadius = '8px';
+            musicBtn.style.background = '#ffffff';
+            musicBtn.style.border = '1px solid #ccc';
+            musicBtn.style.cursor = 'pointer';
+            musicBtn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.08)';
+            document.body.appendChild(musicBtn);
+
+            // 2. Event Listener សម្រាប់ Play/Pause
+            musicBtn.addEventListener('click', async () => {
+                try {
+                    if (bgMusic.paused) {
+                        await bgMusic.play();
+                        musicBtn.innerHTML = '🔊 បិទភ្លេង';
+                    } else {
+                        bgMusic.pause();
+                        musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
+                    }
+                } catch (e) {
+                    console.warn('Playback failed:', e);
+                }
+            });
+
+            // 3. Autoplay Muted Logic (ដើម្បីគោរព Policy របស់ Browser)
+            bgMusic.muted = true;
+            bgMusic.play().then(() => {
+                // ប្រសិនបើ Autoplay ជោគជ័យ (ដោយសារ Muted)
+                // យើងមិនអាច Unmute ភ្លាមៗទេ ដូច្នេះទុកឲ្យ User ចុចប៊ូតុង
+                // ឬអាចលេង Muted បន្ត
+                // ខ្ញុំនឹងទុកវា Muted បន្តសិន ហើយផ្លាស់ប្តូរប៊ូតុង
+                bgMusic.muted = true; // ទុកឲ្យ Muted ពេល Autoplay 
+                musicBtn.innerHTML = '🔊 បិទភ្លេង (Muted)'; // បង្ហាញថាវា Muted
+            }).catch(() => {
+                // Autoplay បរាជ័យ
+                bgMusic.pause();
+                bgMusic.muted = false; // ត្រៀម Unmuted ពេល User ចុច
+                musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
+            });
+            // =======================================================
+            // 🎧 បញ្ចប់កូដ Background Music
+            // =======================================================
+
         });
     </script>
 </body>
 
 </html>
-

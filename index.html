@@ -173,6 +173,83 @@
             z-index: 1000;
         }
 
+        /* Gift box styles */
+        .gift-box {
+            margin: 18px auto 6px;
+            width: 220px;
+            height: 140px;
+            position: relative;
+            perspective: 600px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #ff5f6d, #ffc371);
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            transform-origin: top center;
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            right: 10px;
+            height: 40px;
+            background: linear-gradient(180deg, #ff9a9e, #f6c3a6);
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+            transform-origin: center bottom;
+            transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+            z-index: 5;
+        }
+
+        .gift-open .gift-lid {
+            transform: translateY(-70px) rotateX(50deg);
+            opacity: 0.95;
+        }
+
+        .gift-amount {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 1.6rem;
+            color: #112;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+            transform: translateY(-10px);
+
+            /* Hide the numeric amount on the box itself (we only show in the result area) */
+            .gift-amount {
+                display: none;
+            }
+
+            /* Green amount styling for the compact result */
+            #giftResultAmount {
+                color: #00a403;
+                font-weight: 800;
+                font-size: 1.05rem;
+            }
+
+            z-index: 6;
+        }
+
+        .gift-open .gift-amount {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .jumping-text {
             display: inline-block;
             animation: jump 0.5s ease infinite alternate;
@@ -316,6 +393,26 @@
                 <h2>ការរាប់ថយក្រោយ</h2>
                 <div class="birthday-message" id="birthdayMessage">
                     <div class="cake">🎂</div>
+
+                    <!-- Gift box: click to open on birthday -->
+                    <div class="gift-box" id="giftBox" title="ចុចដើម្បីបើកអំណោយ">
+                        <div class="gift-lid"></div>
+                        <div class="gift-body">អំណោយរបស់អ្នក</div>
+                        <div class="gift-amount" id="giftAmount"></div>
+                    </div>
+                    <div id="giftResult" class="gift-result" style="display:none">
+                        <div id="giftResultAmount"> </div>
+                        <div id="giftSmallMsg" class="gift-message-small"></div>
+                    </div>
+                    <div id="giftControls" style="display:none; text-align:center; margin-top:8px;">
+                        <input id="giftPassword" placeholder="បញ្ចូលពាក្យសម្ងាត់ (e.g. 2026)"
+                            style="padding:6px 8px; border-radius:6px; border:1px solid #ccc; width:140px; margin-right:8px;">
+                        <button id="giftUnlockBtn"
+                            style="padding:6px 10px; border-radius:6px; border:0; background:#43a0a5; color:#fff; cursor:pointer;">បើក</button>
+                        <div id="congratsText" style="display:none; margin-top:8px; font-weight:700; color:#1b7;">
+                            សូមអបអរសាទរ!</div>
+                    </div>
+
                     <div class="birthday-text" id="birthdayText">កំពុងគណនាថ្ងៃកំណើត...</div>
                     <div class="countdown" id="countdown">
                         <div class="countdown-item">
@@ -395,6 +492,21 @@
 					`;
                     countdown.style.display = 'none';
                     createConfetti();
+                    // កុំបើកអំណោយដោយស្វ័យប្រវត្តិ — ទាក់ទាញឲ្យបញ្ចូលពាក្យសម្ងាត់
+                    const giftControls = document.getElementById('giftControls');
+                    const giftPassword = document.getElementById('giftPassword');
+                    const giftResult = document.getElementById('giftResult');
+                    const giftSmallMsg = document.getElementById('giftSmallMsg');
+                    if (giftControls) {
+                        giftControls.style.display = 'block';
+                        if (giftPassword) giftPassword.focus();
+                    }
+                    if (giftResult && giftSmallMsg) {
+                        giftSmallMsg.textContent = 'សូមបញ្ចូលពាក្យសម្ងាត់ ដើម្បីបើកអំណោយ';
+                        giftResult.style.display = 'inline-block';
+                        setTimeout(() => { giftResult.style.display = 'none'; giftSmallMsg.textContent = ''; }, 3200);
+                    }
+
                     if (window.birthdayCountdownInterval) {
                         clearInterval(window.birthdayCountdownInterval);
                     }
@@ -505,6 +617,98 @@
                         confetti.parentNode.removeChild(confetti);
                     }
                 }, animationDuration * 1000);
+            }
+
+            // Gift reveal: show fixed ១០០០០រៀល and animate box
+            function revealGift() {
+                const giftBox = document.getElementById('giftBox');
+                const giftAmountEl = document.getElementById('giftAmount');
+                if (!giftBox || !giftAmountEl) return;
+
+                // fixed amount in Khmer Riel — only show in the compact result area
+                const amountText = '១០០០០រៀល';
+                // ensure box itself doesn't display the number
+                giftAmountEl.textContent = '';
+
+                // animate open and create confetti
+                giftBox.classList.add('gift-open');
+                createConfetti();
+
+                // play background music if available
+                const bg = document.getElementById('bgMusic');
+                if (bg && bg.paused) {
+                    try { bg.play(); } catch (e) { /* ignore */ }
+                }
+
+                // small pop effect on the amount
+                setTimeout(() => {
+                    giftAmountEl.style.transform = 'scale(1.05)';
+                    setTimeout(() => giftAmountEl.style.transform = '', 300);
+                }, 120);
+                // show compact result below gift box
+                const giftResult = document.getElementById('giftResult');
+                const giftResultAmount = document.getElementById('giftResultAmount');
+                const giftSmallMsg = document.getElementById('giftSmallMsg');
+                if (giftResult && giftResultAmount && giftSmallMsg) {
+                    giftResultAmount.textContent = `អ្នកទទួលបាន ${amountText}`;
+                    giftSmallMsg.textContent = 'យេ🥹';
+                    giftResult.style.display = 'inline-block';
+                }
+            }
+
+            // Click handler: only reveal on the target day (day 17, given TARGET constants)
+            const giftBoxEl = document.getElementById('giftBox');
+            const giftUnlockBtn = document.getElementById('giftUnlockBtn');
+            const giftPasswordEl = document.getElementById('giftPassword');
+
+            function tryUnlockFromInteraction(showNotYetMessage = true) {
+                const now = new Date();
+                const isTodayTarget = now.getDate() === TARGET_BIRTHDAY_DAY && now.getMonth() === TARGET_BIRTHDAY_MONTH;
+                const giftResult = document.getElementById('giftResult');
+                const giftSmallMsg = document.getElementById('giftSmallMsg');
+
+                if (!isTodayTarget) {
+                    if (showNotYetMessage && giftResult && giftSmallMsg) {
+                        giftSmallMsg.textContent = 'មិនទាន់ដល់ថ្ងៃទី 17 ទេ — សូមរង់ចាំ';
+                        giftResult.style.display = 'inline-block';
+                        setTimeout(() => { giftResult.style.display = 'none'; giftSmallMsg.textContent = ''; }, 1800);
+                    }
+                    return;
+                }
+
+                // require password '2026'
+                const pw = giftPasswordEl ? giftPasswordEl.value.trim() : '';
+                if (pw === '2026') {
+                    revealGift();
+                    const congrats = document.getElementById('congratsText');
+                    if (congrats) {
+                        congrats.style.display = 'block';
+                        setTimeout(() => congrats.style.display = 'none', 5000);
+                    }
+                } else {
+                    if (giftResult && giftSmallMsg) {
+                        giftSmallMsg.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ សូមព្យាយាមម្តងទៀត';
+                        giftResult.style.display = 'inline-block';
+                        setTimeout(() => { giftResult.style.display = 'none'; giftSmallMsg.textContent = ''; }, 2200);
+                    }
+                }
+            }
+
+            if (giftBoxEl) {
+                giftBoxEl.addEventListener('click', () => {
+                    const giftControls = document.getElementById('giftControls');
+                    if (giftControls && giftControls.style.display === 'none') {
+                        giftControls.style.display = 'block';
+                        const pw = document.getElementById('giftPassword');
+                        if (pw) pw.focus();
+                        return;
+                    }
+                    tryUnlockFromInteraction(true);
+                });
+            }
+
+            if (giftUnlockBtn) {
+                giftUnlockBtn.addEventListener('click', () => tryUnlockFromInteraction(false));
             }
             // ... (រក្សាកូដ Confetti ទាំងអស់)
 

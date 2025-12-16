@@ -506,9 +506,10 @@
                     }
                 }, animationDuration * 1000);
             }
+            // ... (រក្សាកូដ Confetti ទាំងអស់)
 
             // =======================================================
-            // 🎧 កូដបន្ថែមតន្ត្រី Background Music (ដាក់នៅទីនេះ)
+            // 🎧 កូដ Background Music ដែលបានកែតម្រូវ
             // =======================================================
 
             // 1. បង្កើត Audio Element និងប៊ូតុង
@@ -516,15 +517,15 @@
             bgMusic.id = 'bgMusic';
             bgMusic.src = 'music/Happy.mp3'; // ត្រូវប្រាកដថា Path នេះត្រឹមត្រូវ!
             bgMusic.loop = true;
-            bgMusic.preload = 'auto';
+            bgMusic.preload = 'auto'; // អាច preload ដើម្បីជួយល្បឿន
             document.body.appendChild(bgMusic);
 
             const musicBtn = document.createElement('button');
             musicBtn.id = 'musicBtn';
             musicBtn.setAttribute('aria-label', 'Play or pause background music');
-            musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
+            musicBtn.innerHTML = '🔈 ចាក់ភ្លេង'; // លំនាំដើម (Default) គឺ Paused
 
-            // កូដ CSS សម្រាប់ប៊ូតុង
+            // កូដ CSS សម្រាប់ប៊ូតុង (រក្សាទុក)
             musicBtn.style.position = 'fixed';
             musicBtn.style.right = '20px';
             musicBtn.style.bottom = '20px';
@@ -537,36 +538,34 @@
             musicBtn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.08)';
             document.body.appendChild(musicBtn);
 
-            // 2. Event Listener សម្រាប់ Play/Pause
-            musicBtn.addEventListener('click', async () => {
-                try {
-                    if (bgMusic.paused) {
-                        await bgMusic.play();
-                        musicBtn.innerHTML = '🔊 បិទភ្លេង';
-                    } else {
-                        bgMusic.pause();
-                        musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
-                    }
-                } catch (e) {
-                    console.warn('Playback failed:', e);
-                }
-            });
+            // 2. មុខងារសម្រាប់ចាប់ផ្តើម/ផ្អាក
+            function toggleMusic() {
+                // ដំបូងត្រូវលុប mute ចោលសិន មុនពេលព្យាយាម Play
+                bgMusic.muted = false;
 
-            // 3. Autoplay Muted Logic (ដើម្បីគោរព Policy របស់ Browser)
-            bgMusic.muted = true;
-            bgMusic.play().then(() => {
-                // ប្រសិនបើ Autoplay ជោគជ័យ (ដោយសារ Muted)
-                // យើងមិនអាច Unmute ភ្លាមៗទេ ដូច្នេះទុកឲ្យ User ចុចប៊ូតុង
-                // ឬអាចលេង Muted បន្ត
-                // ខ្ញុំនឹងទុកវា Muted បន្តសិន ហើយផ្លាស់ប្តូរប៊ូតុង
-                bgMusic.muted = true; // ទុកឲ្យ Muted ពេល Autoplay 
-                musicBtn.innerHTML = '🔊 បិទភ្លេង (Muted)'; // បង្ហាញថាវា Muted
-            }).catch(() => {
-                // Autoplay បរាជ័យ
-                bgMusic.pause();
-                bgMusic.muted = false; // ត្រៀម Unmuted ពេល User ចុច
-                musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
-            });
+                if (bgMusic.paused) {
+                    // ព្យាយាម Play
+                    bgMusic.play().then(() => {
+                        musicBtn.innerHTML = '🔊 បិទភ្លេង';
+                    }).catch(e => {
+                        // ក្នុងករណី Play បរាជ័យទៀត
+                        console.warn('Playback failed (after click):', e);
+                        musicBtn.innerHTML = '🔈 ចាក់ភ្លេង (មានបញ្ហា)';
+                    });
+                } else {
+                    // Pause
+                    bgMusic.pause();
+                    musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
+                }
+            }
+
+            // 3. Event Listener សម្រាប់ Play/Pause (ប្រើតែមួយ Click)
+            musicBtn.addEventListener('click', toggleMusic);
+
+            // 4. ដោះស្រាយ Autoplay ពេលផ្ទុកដំបូង
+            // គោលការណ៍៖ ត្រូវតែរង់ចាំ User Click ជានិច្ច ដូច្នេះយើងមិនព្យាយាម Autoplay ទេ។
+            // យើងគ្រាន់តែទុកឲ្យប៊ូតុងបង្ហាញ "ចាក់ភ្លេង" ហើយរង់ចាំ User ចុចតែម្តងគត់
+            // បន្ទាត់កូដ Autoplay ចាស់ត្រូវបានលុបចោលដើម្បីធានាការអនុវត្តតាមគោលការណ៍ Browser
             // =======================================================
             // 🎧 បញ្ចប់កូដ Background Music
             // =======================================================

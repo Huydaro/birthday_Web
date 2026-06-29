@@ -1,1 +1,1559 @@
+<!DOCTYPE html>
+<html lang="km">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>រីករាយថ្ងៃកំណើត ស៊ុយ សេរីកាន់ន្និកា</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Koulen', 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(2px 2px at 10% 20%, #ff6b6b, transparent),
+                radial-gradient(2px 2px at 30% 60%, #ffd700, transparent),
+                radial-gradient(2px 2px at 50% 10%, #a18cd1, transparent),
+                radial-gradient(2px 2px at 70% 80%, #fbc2eb, transparent),
+                radial-gradient(2px 2px at 90% 40%, #ff9a9e, transparent),
+                radial-gradient(3px 3px at 15% 85%, #ffd700, transparent),
+                radial-gradient(3px 3px at 45% 45%, #ff6b6b, transparent),
+                radial-gradient(3px 3px at 75% 25%, #a8edea, transparent),
+                radial-gradient(3px 3px at 55% 75%, #fad0c4, transparent),
+                radial-gradient(4px 4px at 85% 55%, #ffecd2, transparent),
+                radial-gradient(4px 4px at 5% 50%, #a18cd1, transparent),
+                radial-gradient(4px 4px at 95% 90%, #fbc2eb, transparent);
+            background-size: 200px 200px;
+            background-repeat: repeat;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 0;
+            animation: twinkleStars 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkleStars {
+            0% {
+                opacity: 0.4;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.9;
+                transform: scale(1.05);
+            }
+        }
+
+        /* ===== RAINBOW BORDER ===== */
+        .container {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 850px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            border: 2px solid transparent;
+            animation: rainbowBorder 4s linear infinite, float 6s ease-in-out infinite;
+        }
+
+        @keyframes rainbowBorder {
+            0% {
+                border-color: #ff6b6b;
+                box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+            }
+            25% {
+                border-color: #ffd700;
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+            }
+            50% {
+                border-color: #a18cd1;
+                box-shadow: 0 0 30px rgba(161, 140, 209, 0.2);
+            }
+            75% {
+                border-color: #fbc2eb;
+                box-shadow: 0 0 30px rgba(251, 194, 235, 0.2);
+            }
+            100% {
+                border-color: #ff6b6b;
+                box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: relative;
+            padding: 35px 25px 30px;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(255, 215, 0, 0.2), rgba(161, 140, 209, 0.2));
+            border-bottom: 2px solid transparent;
+            animation: headerBorder 4s ease-in-out infinite;
+        }
+
+        @keyframes headerBorder {
+            0% {
+                border-bottom-color: #ff6b6b;
+            }
+            50% {
+                border-bottom-color: #ffd700;
+            }
+            100% {
+                border-bottom-color: #ff6b6b;
+            }
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.08), transparent 70%);
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%,
+            100% {
+                transform: translateX(-30%) rotate(0deg);
+            }
+            50% {
+                transform: translateX(30%) rotate(5deg);
+            }
+        }
+
+        header h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 2.8rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd700, #a18cd1, #fbc2eb, #ff6b6b);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowText 3s ease-in-out infinite;
+            filter: drop-shadow(0 2px 30px rgba(255, 215, 0, 0.3));
+            letter-spacing: 2px;
+        }
+
+        @keyframes rainbowText {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header h1:last-of-type {
+            font-size: 2.4rem;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #ff9a9e);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbowText 4s ease-in-out infinite;
+        }
+
+        .subtitle {
+            position: relative;
+            z-index: 1;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 2px;
+            font-weight: 300;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .subtitle i {
+            animation: iconColor 2s ease-in-out infinite;
+            margin: 0 5px;
+        }
+
+        .subtitle i:nth-child(1) {
+            color: #ff6b6b;
+            animation-delay: 0s;
+        }
+        .subtitle i:nth-child(2) {
+            color: #ffd700;
+            animation-delay: 0.5s;
+        }
+        .subtitle i:nth-child(3) {
+            color: #a18cd1;
+            animation-delay: 1s;
+        }
+        .subtitle i:nth-child(4) {
+            color: #fbc2eb;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes iconColor {
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.3) rotate(20deg);
+            }
+        }
+
+        .main-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .result-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: sectionGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes sectionGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 107, 107, 0.05);
+            }
+            33% {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.08);
+            }
+            66% {
+                box-shadow: 0 0 30px rgba(161, 140, 209, 0.08);
+            }
+        }
+
+        h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.2);
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .birthday-message {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(255, 215, 0, 0.10), rgba(161, 140, 209, 0.10));
+            border: 2px solid transparent;
+            animation: rainbowBorder 4s linear infinite, glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.05);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(255, 215, 0, 0.15);
+            }
+        }
+
+        .birthday-text {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            animation: textRainbow 3s ease-in-out infinite;
+        }
+
+        @keyframes textRainbow {
+            0% {
+                text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+            }
+            33% {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            }
+            66% {
+                text-shadow: 0 0 30px rgba(161, 140, 209, 0.4);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+            }
+        }
+
+        .birthday-text .highlight {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #a18cd1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.2rem;
+        }
+
+        .cake {
+            font-size: 6rem;
+            margin: 15px 0;
+            animation: cakeDance 2s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 10px 40px rgba(255, 215, 0, 0.4));
+        }
+
+        @keyframes cakeDance {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-5deg) scale(1);
+            }
+            25% {
+                transform: translateY(-15px) rotate(3deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(-25px) rotate(-2deg) scale(1.1);
+            }
+            75% {
+                transform: translateY(-10px) rotate(4deg) scale(1.05);
+            }
+        }
+
+        /* ===== COUNTDOWN - COLORFUL ===== */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            padding: 20px 25px;
+            border-radius: 18px;
+            min-width: 95px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            animation: countdownRainbow 3s ease-in-out infinite;
+        }
+
+        .countdown-item:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .countdown-item:nth-child(2) {
+            animation-delay: 0.75s;
+        }
+        .countdown-item:nth-child(3) {
+            animation-delay: 1.5s;
+        }
+        .countdown-item:nth-child(4) {
+            animation-delay: 2.25s;
+        }
+
+        @keyframes countdownRainbow {
+            0% {
+                border-color: #ff6b6b;
+                box-shadow: 0 0 20px rgba(255, 107, 107, 0.1);
+            }
+            25% {
+                border-color: #ffd700;
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+            }
+            50% {
+                border-color: #a18cd1;
+                box-shadow: 0 0 25px rgba(161, 140, 209, 0.15);
+            }
+            75% {
+                border-color: #fbc2eb;
+                box-shadow: 0 0 25px rgba(251, 194, 235, 0.15);
+            }
+            100% {
+                border-color: #ff6b6b;
+                box-shadow: 0 0 20px rgba(255, 107, 107, 0.1);
+            }
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-8px) scale(1.05);
+            border-color: #ffd700 !important;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2) !important;
+        }
+
+        .countdown-number {
+            font-size: 2.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #a18cd1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1.2;
+            animation: numberGradient 2s ease-in-out infinite;
+        }
+
+        @keyframes numberGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== GIFT BOX - SUPER COLORFUL ===== */
+        .gift-section {
+            margin: 15px auto 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .gift-box-wrapper {
+            perspective: 800px;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .gift-box-wrapper:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+
+        .gift-box {
+            width: 240px;
+            height: 190px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .gift-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #ff6b6b, #ff9a9e, #fbc2eb, #a18cd1);
+            background-size: 300% 300%;
+            border-radius: 18px 18px 28px 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 -5px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #fff;
+            transform-origin: top center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            animation: giftGradient 4s ease-in-out infinite;
+        }
+
+        @keyframes giftGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gift-body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.2), transparent 60%);
+            animation: giftShine 4s ease-in-out infinite;
+        }
+
+        @keyframes giftShine {
+            0%,
+            100% {
+                transform: translateX(-30%) rotate(0deg);
+            }
+            50% {
+                transform: translateX(30%) rotate(5deg);
+            }
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: -14px;
+            left: -10px;
+            right: -10px;
+            height: 50px;
+            background: linear-gradient(145deg, #ffd700, #f59e0b, #ff6b6b);
+            background-size: 200% 200%;
+            border-radius: 18px 18px 6px 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform-origin: center bottom;
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: lidGradient 3s ease-in-out infinite;
+        }
+
+        @keyframes lidGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gift-lid::before {
+            content: '🎀';
+            font-size: 3rem;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 5px 15px rgba(255, 215, 0, 0.4));
+            animation: bowBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bowBounce {
+            0%,
+            100% {
+                transform: translateX(-50%) scale(1) rotate(-5deg);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2) rotate(5deg);
+            }
+        }
+
+        .gift-open .gift-lid {
+            transform: translateY(-95px) rotateX(65deg) scale(0.9);
+            opacity: 0.9;
+        }
+
+        .gift-ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 16px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffd700, #ff6b6b, #a18cd1);
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .gift-ribbon-horizontal {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 16px;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b, #a18cd1);
+            transform: translateY(-50%);
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .gift-sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 1.4rem;
+            animation: sparkleRainbow 3s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 8%;
+            left: 8%;
+            animation-delay: 0s;
+            color: #ffd700;
+        }
+        .sparkle:nth-child(2) {
+            top: 12%;
+            right: 10%;
+            animation-delay: 0.6s;
+            color: #ff6b6b;
+        }
+        .sparkle:nth-child(3) {
+            bottom: 18%;
+            left: 12%;
+            animation-delay: 1.2s;
+            color: #a18cd1;
+        }
+        .sparkle:nth-child(4) {
+            bottom: 12%;
+            right: 8%;
+            animation-delay: 1.8s;
+            color: #fbc2eb;
+        }
+        .sparkle:nth-child(5) {
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 2.4s;
+            font-size: 2.2rem;
+            color: #ffd700;
+        }
+
+        @keyframes sparkleRainbow {
+            0%,
+            100% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.4) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        .gift-body .gift-label {
+            position: relative;
+            z-index: 4;
+            font-size: 1.1rem;
+            color: #fff;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 25px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: labelPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes labelPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* ===== GIFT RESULT ===== */
+        .gift-result {
+            margin-top: 20px;
+            padding: 25px 30px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 107, 107, 0.08), rgba(161, 140, 209, 0.08));
+            border-radius: 22px;
+            border: 2px solid transparent;
+            animation: resultRainbow 4s linear infinite, resultAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        @keyframes resultRainbow {
+            0% {
+                border-color: #ff6b6b;
+            }
+            25% {
+                border-color: #ffd700;
+            }
+            50% {
+                border-color: #a18cd1;
+            }
+            75% {
+                border-color: #fbc2eb;
+            }
+            100% {
+                border-color: #ff6b6b;
+            }
+        }
+
+        @keyframes resultAppear {
+            0% {
+                transform: scale(0.6) translateY(40px) rotate(-10deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        #giftResultIcon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 8px;
+            animation: iconPop 1s ease-out, iconFloat 2s ease-in-out infinite 1s;
+        }
+
+        @keyframes iconPop {
+            0% {
+                transform: scale(0) rotate(-180deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes iconFloat {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        #giftResultAmount {
+            font-size: 2.4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #a18cd1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin-bottom: 5px;
+            animation: resultGradient 3s ease-in-out infinite;
+        }
+
+        @keyframes resultGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #giftSmallMsg {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+
+        .gift-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #a18cd1);
+            background-size: 200% 200%;
+            color: #fff;
+            padding: 4px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 10px;
+            animation: badgeGradient 3s ease-in-out infinite;
+        }
+
+        @keyframes badgeGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gift-controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .gift-controls input {
+            padding: 12px 20px;
+            border-radius: 14px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            animation: inputBorder 3s ease-in-out infinite;
+        }
+
+        @keyframes inputBorder {
+            0% {
+                border-color: #ff6b6b;
+            }
+            33% {
+                border-color: #ffd700;
+            }
+            66% {
+                border-color: #a18cd1;
+            }
+            100% {
+                border-color: #ff6b6b;
+            }
+        }
+
+        .gift-controls input:focus {
+            outline: none;
+            border-color: #ffd700 !important;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .gift-controls input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .gift-controls button {
+            padding: 12px 40px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #a18cd1);
+            background-size: 200% 200%;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.2);
+            width: 100%;
+            animation: btnGradient 3s ease-in-out infinite;
+        }
+
+        @keyframes btnGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gift-controls button:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 8px 50px rgba(255, 215, 0, 0.4);
+        }
+
+        .gift-controls button:active {
+            transform: scale(0.95);
+        }
+
+        #congratsText {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.5rem;
+            font-weight: bold;
+            animation: congratsPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), congratsPulse 1.5s ease-in-out infinite 0.8s;
+            text-shadow: none;
+        }
+
+        @keyframes congratsPop {
+            0% {
+                transform: scale(0) rotate(-30deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes congratsPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            letter-spacing: 1px;
+        }
+
+        /* ===== MUSIC BUTTON ===== */
+        #musicBtn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 1001;
+            padding: 12px 20px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 215, 0, 0.15));
+            backdrop-filter: blur(12px);
+            border: 2px solid transparent;
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: musicBorder 3s ease-in-out infinite;
+        }
+
+        @keyframes musicBorder {
+            0% {
+                border-color: #ff6b6b;
+            }
+            33% {
+                border-color: #ffd700;
+            }
+            66% {
+                border-color: #a18cd1;
+            }
+            100% {
+                border-color: #ff6b6b;
+            }
+        }
+
+        #musicBtn:hover {
+            transform: scale(1.08);
+            background: rgba(255, 215, 0, 0.2);
+            box-shadow: 0 5px 40px rgba(255, 215, 0, 0.2);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            border-radius: 2px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            header h1:last-of-type {
+                font-size: 1.6rem;
+            }
+            .main-content {
+                padding: 20px;
+            }
+            .birthday-text {
+                font-size: 1.3rem;
+            }
+            .cake {
+                font-size: 4rem;
+            }
+            .countdown-item {
+                min-width: 70px;
+                padding: 14px 16px;
+            }
+            .countdown-number {
+                font-size: 2rem;
+            }
+            .gift-box {
+                width: 180px;
+                height: 150px;
+            }
+            .gift-body {
+                font-size: 1rem;
+            }
+            .gift-lid {
+                height: 42px;
+                top: -10px;
+            }
+            .gift-lid::before {
+                font-size: 2.4rem;
+                top: -14px;
+            }
+            #musicBtn {
+                right: 15px;
+                bottom: 15px;
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+            .gift-result {
+                padding: 18px 20px;
+            }
+            #giftResultAmount {
+                font-size: 1.7rem;
+            }
+            #giftResultIcon {
+                font-size: 2.5rem;
+            }
+            .gift-controls input {
+                font-size: 0.95rem;
+                padding: 10px 16px;
+            }
+            .gift-controls button {
+                font-size: 1rem;
+                padding: 10px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 25px 15px 20px;
+            }
+            header h1 {
+                font-size: 1.5rem;
+            }
+            header h1:last-of-type {
+                font-size: 1.3rem;
+            }
+            .subtitle {
+                font-size: 0.8rem;
+            }
+            .birthday-text {
+                font-size: 1rem;
+            }
+            .countdown-item {
+                min-width: 58px;
+                padding: 10px 12px;
+            }
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+            .gift-box {
+                width: 150px;
+                height: 125px;
+            }
+            .gift-body {
+                font-size: 0.85rem;
+                border-radius: 14px;
+            }
+            .gift-lid {
+                height: 36px;
+                top: -8px;
+                border-radius: 14px 14px 4px 4px;
+            }
+            .gift-lid::before {
+                font-size: 2rem;
+                top: -12px;
+            }
+            .gift-ribbon {
+                width: 10px;
+            }
+            .gift-ribbon-horizontal {
+                height: 10px;
+            }
+            #giftResultAmount {
+                font-size: 1.3rem;
+            }
+            #giftResultIcon {
+                font-size: 2rem;
+            }
+            .gift-sparkles .sparkle {
+                font-size: 1rem !important;
+            }
+            .gift-sparkles .sparkle:nth-child(5) {
+                font-size: 1.6rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 រីករាយថ្ងៃកំណើត 🎉</h1>
+            <h1>ស៊ុយ សេរីកាន់ន្និកា</h1>
+            <div class="subtitle">
+                <i class="fas fa-star"></i>
+                ការរាប់ថយក្រោយសម្រាប់ថ្ងៃទី 17 ខែធ្នូ ឆ្នាំ 2025
+                <i class="fas fa-star"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <section class="result-section">
+                <h2>⏳ ការរាប់ថយក្រោយ</h2>
+                <div class="birthday-message" id="birthdayMessage">
+                    <div class="cake">🎂</div>
+
+                    <div class="gift-section">
+                        <div class="gift-box-wrapper" id="giftBoxWrapper" title="ចុចដើម្បីបើកអំណោយ">
+                            <div class="gift-box" id="giftBox">
+                                <div class="gift-lid"></div>
+                                <div class="gift-body">
+                                    <div class="gift-ribbon"></div>
+                                    <div class="gift-ribbon-horizontal"></div>
+                                    <div class="gift-sparkles">
+                                        <span class="sparkle">✨</span>
+                                        <span class="sparkle">⭐</span>
+                                        <span class="sparkle">🌟</span>
+                                        <span class="sparkle">💫</span>
+                                        <span class="sparkle">🎁</span>
+                                    </div>
+                                    <span class="gift-label">🎁 អំណោយរបស់អ្នក</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="giftResult" class="gift-result" style="display:none;">
+                            <span id="giftResultIcon">💝</span>
+                            <span id="giftResultAmount"></span>
+                            <div id="giftSmallMsg"></div>
+                            <span class="gift-badge">🎯 ពិសេសសម្រាប់តែអូន</span>
+                        </div>
+
+                        <div class="gift-controls" id="giftControls" style="display:none;">
+                            <input id="giftPassword" type="password" placeholder="🔑 បញ្ចូលពាក្យសម្ងាត់" maxlength="30">
+                            <button id="giftUnlockBtn"><i class="fas fa-unlock-alt"></i> បើកអំណោយ</button>
+                            <div id="congratsText" style="display:none;">
+                                <i class="fas fa-gift"></i> សូមអបអរសាទរ! 🎉
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="birthday-text" id="birthdayText">កំពុងគណនាថ្ងៃកំណើត...</div>
+
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">0</span>
+                            <div class="countdown-label">ថ្ងៃ</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">0</span>
+                            <div class="countdown-label">ម៉ោង</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">0</span>
+                            <div class="countdown-label">នាទី</div>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">0</span>
+                            <div class="countdown-label">វិនាទី</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2026 គេហទំព័រថ្ងៃកំណើតសម្រាប់តែពន្ធតែប៉ុណ្ណោះ Kannyka 💛</p>
+        </footer>
+    </div>
+
+    <button id="musicBtn"><i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== CONFIGURATION =====
+            const TARGET_BIRTHDAY_MONTH = 11;
+            const TARGET_BIRTHDAY_DAY = 17;
+            const TARGET_BIRTHDAY_YEAR = 2025;
+            const BIRTH_YEAR = 2004;
+            const GIFT_PASSWORD = 'អូនជាពន្លឺនៃបង';
+
+            // ===== DOM REFERENCES =====
+            const birthdayText = document.getElementById('birthdayText');
+            const countdown = document.getElementById('countdown');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            const giftBox = document.getElementById('giftBox');
+            const giftBoxWrapper = document.getElementById('giftBoxWrapper');
+            const giftControls = document.getElementById('giftControls');
+            const giftPassword = document.getElementById('giftPassword');
+            const giftUnlockBtn = document.getElementById('giftUnlockBtn');
+            const giftResult = document.getElementById('giftResult');
+            const giftResultAmount = document.getElementById('giftResultAmount');
+            const giftResultIcon = document.getElementById('giftResultIcon');
+            const giftSmallMsg = document.getElementById('giftSmallMsg');
+            const congratsText = document.getElementById('congratsText');
+            const musicBtn = document.getElementById('musicBtn');
+            const musicLabel = document.getElementById('musicLabel');
+
+            // ===== GIFT COLLECTION - MORE COLORFUL =====
+            const GIFT_COLLECTION = [{
+                icon: '💝',
+                title: 'សេចក្ដីស្រឡាញ់គ្មានទីបញ្ចប់',
+                desc: 'បងស្រឡាញ់អូនច្រើនណាស់ ហើយនឹងស្រឡាញ់អូនជារៀងរហូត 💕'
+            }, {
+                icon: '🌹',
+                title: 'ផ្កាកុលាបពណ៌ក្រហម ៩៩ ដើម',
+                desc: 'តំណាងឲ្យសេចក្ដីស្រឡាញ់ដ៏ជ្រាលជ្រៅ និងអស់កល្បជានិច្ច 🌹'
+            }, {
+                icon: '💎',
+                title: 'ចិញ្ចៀនពេជ្រដ៏មានតម្លៃ',
+                desc: 'ដូចជាតម្លៃរបស់អូននៅក្នុងចិត្តបង ដែលគ្មានអ្វីអាចប្រៀបផ្ទឹមបាន 💎'
+            }, {
+                icon: '✈️',
+                title: 'សំបុត្រធ្វើដំណើរទៅកាន់កន្លែងសុបិន',
+                desc: 'ទៅកាន់កន្លែងដែលអូនធ្លាប់ប្រាប់បងថាចង់ទៅ 🌏'
+            }, {
+                icon: '📖',
+                title: 'សៀវភៅកំណត់ហេតុនៃក្តីស្រឡាញ់',
+                desc: 'សៀវភៅដែលបងបានសរសេរពីអារម្មណ៍របស់បងចំពោះអូន រាល់ថ្ងៃ 📝'
+            }, {
+                icon: '🎵',
+                title: 'បទចម្រៀងពិសេសសម្រាប់អូន',
+                desc: 'បទចម្រៀងដែលបងនិពន្ធឡើងសម្រាប់តែអូនម្នាក់គត់ 🎶'
+            }, {
+                icon: '🌅',
+                title: 'ថ្ងៃលិចដ៏ស្រស់ស្អាតជាមួយគ្នា',
+                desc: 'ពេលវេលាដ៏មានតម្លៃដែលបងចង់ចំណាយជាមួយអូន 🌄'
+            }, {
+                icon: '🤗',
+                title: 'ការឱបដ៏កក់ក្តៅគ្មានទីបញ្ចប់',
+                desc: 'ឱបអូនឲ្យជិត ហើយមិនដែលចង់លែងឡើយ 🤗'
+            }, {
+                icon: '🌈',
+                title: 'ឥន្ទធនូនៃសុភមង្គល',
+                desc: 'ដូចជាពណ៌ទាំង ៧ នៃឥន្ទធនូ សុភមង្គលរបស់អូននឹងភ្លឺថ្លាជានិច្ច 🌈'
+            }, {
+                icon: '🦋',
+                title: 'សេរីភាពដូចមេអំបៅ',
+                desc: 'សូមឲ្យអូនមានសេរីភាព និងភាពស្រស់ស្អាតដូចមេអំបៅ 🦋'
+            }];
+
+            // ===== COUNTDOWN LOGIC =====
+            function startCountdown() {
+                const nextBirthdayDate = new Date(TARGET_BIRTHDAY_YEAR, TARGET_BIRTHDAY_MONTH, TARGET_BIRTHDAY_DAY);
+                const today = new Date();
+
+                const isTargetBirthdayToday =
+                    today.getDate() === TARGET_BIRTHDAY_DAY &&
+                    today.getMonth() === TARGET_BIRTHDAY_MONTH &&
+                    today.getFullYear() === TARGET_BIRTHDAY_YEAR;
+
+                if (today.getTime() > nextBirthdayDate.getTime() && !isTargetBirthdayToday) {
+                    birthdayText.innerHTML = `
+                        <span style="color: #ff6b6b;">ថ្ងៃកំណើត ${TARGET_BIRTHDAY_DAY}/${TARGET_BIRTHDAY_MONTH + 1}/${TARGET_BIRTHDAY_YEAR} បានកន្លងផុតហើយ</span>
+                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.5);">សូមរង់ចាំថ្ងៃកំណើតឆ្នាំក្រោយ</span>
+                    `;
+                    countdown.style.display = 'none';
+                    if (window.birthdayCountdownInterval) {
+                        clearInterval(window.birthdayCountdownInterval);
+                    }
+                } else if (isTargetBirthdayToday) {
+                    const age = today.getFullYear() - BIRTH_YEAR;
+                    birthdayText.innerHTML = `
+                        <span class="highlight">🎊 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🎊</span>
+                        <br><span style="font-size:1.2rem;color:#ffd700;">17 ធ្នូ 2025</span>
+                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.8);display:block;margin-top:10px;">
+                            <i class="fas fa-heart" style="color:#ff6b6b;"></i>
+                            សូមឲ្យអូនមានកម្លាំងក្នុងចិត្ត សុខភាពល្អ និងមនុស្សល្អៗនៅជុំវិញ
+                            <i class="fas fa-heart" style="color:#ff6b6b;"></i>
+                        </span>
+                        <br><br><span style="font-size:1rem;color:rgba(255,255,255,0.7);font-style:italic;">
+                            "ឲ្យអូនរស់នៅក្នុងឆ្នាំថ្មីដោយចិត្តដូចទឹក ស្ងប់ ស្រាល និងច្បាស់"
+                        </span>
+                        <br><span style="font-size:0.9rem;color:rgba(255,255,255,0.5);margin-top:5px;display:block;">
+                            គ្រប់ជំហាននឹងនាំអូនទៅកាន់អ្វីល្អជាងមុន 🌟
+                        </span>
+                    `;
+                    countdown.style.display = 'none';
+                    createConfetti(250);
+                    giftControls.style.display = 'flex';
+                    if (giftPassword) giftPassword.focus();
+                    if (window.birthdayCountdownInterval) {
+                        clearInterval(window.birthdayCountdownInterval);
+                    }
+                } else {
+                    birthdayText.innerHTML = `
+                        <span style="color:#ffd700;">ថ្ងៃកំណើតរបស់អូន</span>
+                        <br><span style="font-size:1.2rem;color:#fff;">${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.5);">
+                            <i class="fas fa-hourglass-half"></i> នឹងមកដល់ក្នុងរយៈពេល
+                        </span>
+                    `;
+                    countdown.style.display = 'flex';
+                    updateCountdown(nextBirthdayDate);
+                    const countdownInterval = setInterval(() => updateCountdown(nextBirthdayDate), 1000);
+                    window.birthdayCountdownInterval = countdownInterval;
+                    createMiniConfetti();
+                }
+            }
+
+            function updateCountdown(nextBirthday) {
+                const now = new Date().getTime();
+                const timeRemaining = nextBirthday.getTime() - now;
+
+                if (timeRemaining < 0) {
+                    daysEl.textContent = '0';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    if (window.birthdayCountdownInterval) {
+                        clearInterval(window.birthdayCountdownInterval);
+                    }
+                    startCountdown();
+                    return;
+                }
+
+                const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                daysEl.textContent = days;
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
+            }
+
+            // ===== CONFETTI - RAINBOW =====
+            function createConfetti(count = 250) {
+                const colors = ['#ff6b6b', '#ffd700', '#a18cd1', '#fbc2eb', '#ff9a9e', '#fad0c4', '#ffecd2', '#a8edea',
+                    '#667eea', '#764ba2', '#f093fb', '#4facfe'
+                ];
+                for (let i = 0; i < count; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-20px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    const size = Math.random() * 16 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    document.body.appendChild(confetti);
+                    animateConfetti(confetti);
+                }
+            }
+
+            function createMiniConfetti() {
+                const colors = ['#ffd700', '#ff6b6b', '#a18cd1', '#fbc2eb'];
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    const size = Math.random() * 8 + 3;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    document.body.appendChild(confetti);
+                    animateConfetti(confetti, 1.5);
+                }
+            }
+
+            function animateConfetti(confetti, durationMultiplier = 1) {
+                const duration = (Math.random() * 2 + 1.5) * durationMultiplier;
+                const horizontal = Math.random() * 500 - 250;
+                confetti.style.opacity = '1';
+                confetti.style.transition = `all ${duration}s cubic-bezier(0.1, 0.8, 0.2, 1)`;
+
+                setTimeout(() => {
+                    confetti.style.transform =
+                        `translate(${horizontal}px, ${window.innerHeight + 50}px) rotate(${Math.random() * 720}deg)`;
+                    confetti.style.opacity = '0';
+                }, 10);
+
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, duration * 1000 + 100);
+            }
+
+            // ===== GIFT LOGIC =====
+            function revealGift() {
+                const gift = GIFT_COLLECTION[Math.floor(Math.random() * GIFT_COLLECTION.length)];
+
+                giftBox.classList.add('gift-open');
+                createConfetti(180);
+
+                giftResult.style.display = 'block';
+                giftResultIcon.textContent = gift.icon;
+                giftResultAmount.textContent = `🎁 ${gift.title}`;
+                giftSmallMsg.textContent = gift.desc;
+
+                const audio = document.getElementById('bgAudio');
+                if (audio && audio.paused) {
+                    try { audio.play(); } catch (e) { /* ignore */ }
+                }
+
+                if (musicLabel) {
+                    musicLabel.textContent = 'កំពុងចាក់';
+                    musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">កំពុងចាក់</span>';
+                }
+
+                setTimeout(() => {
+                    giftBox.classList.remove('gift-open');
+                }, 3000);
+            }
+
+            function tryUnlockFromInteraction(showNotYetMessage = true) {
+                const now = new Date();
+                const isTodayTarget = now.getDate() === TARGET_BIRTHDAY_DAY &&
+                    now.getMonth() === TARGET_BIRTHDAY_MONTH;
+
+                if (!isTodayTarget) {
+                    if (showNotYetMessage) {
+                        giftResult.style.display = 'block';
+                        giftResultIcon.textContent = '⏳';
+                        giftResultAmount.textContent = 'មិនទាន់ដល់ថ្ងៃទី 17 ទេ';
+                        giftSmallMsg.textContent = 'សូមរង់ចាំថ្ងៃកំណើតរបស់អូន 💕';
+                        setTimeout(() => {
+                            giftResult.style.display = 'none';
+                        }, 3000);
+                    }
+                    return;
+                }
+
+                const pw = giftPassword ? giftPassword.value.trim() : '';
+                if (pw === GIFT_PASSWORD) {
+                    revealGift();
+                    congratsText.style.display = 'block';
+                    giftPassword.value = '';
+                    setTimeout(() => congratsText.style.display = 'none', 5000);
+                } else {
+                    giftResult.style.display = 'block';
+                    giftResultIcon.textContent = '❌';
+                    giftResultAmount.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
+                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 💪';
+                    setTimeout(() => {
+                        giftResult.style.display = 'none';
+                    }, 2500);
+                }
+            }
+
+            // ===== EVENT LISTENERS =====
+            if (giftBoxWrapper) {
+                giftBoxWrapper.addEventListener('click', () => {
+                    if (giftControls.style.display === 'none') {
+                        giftControls.style.display = 'flex';
+                        if (giftPassword) giftPassword.focus();
+                        return;
+                    }
+                    tryUnlockFromInteraction(true);
+                });
+            }
+
+            if (giftUnlockBtn) {
+                giftUnlockBtn.addEventListener('click', () => tryUnlockFromInteraction(false));
+            }
+
+            if (giftPassword) {
+                giftPassword.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        tryUnlockFromInteraction(false);
+                    }
+                });
+            }
+
+            // ===== BACKGROUND MUSIC =====
+            const bgAudio = document.createElement('audio');
+            bgAudio.id = 'bgAudio';
+            bgAudio.src = 'music/Happy.mp3';
+            bgAudio.loop = true;
+            bgAudio.preload = 'auto';
+            bgAudio.volume = 0.4;
+            document.body.appendChild(bgAudio);
+
+            let musicPlaying = false;
+
+            musicBtn.addEventListener('click', function() {
+                if (!musicPlaying) {
+                    bgAudio.play().then(() => {
+                        musicPlaying = true;
+                        musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">បិទភ្លេង</span>';
+                    }).catch(() => {
+                        musicBtn.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span>';
+                    });
+                } else {
+                    bgAudio.pause();
+                    musicPlaying = false;
+                    musicBtn.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span>';
+                }
+            });
+
+            // ===== INIT =====
+            startCountdown();
+
+            const today = new Date();
+            if (today.getDate() === TARGET_BIRTHDAY_DAY &&
+                today.getMonth() === TARGET_BIRTHDAY_MONTH) {
+                giftControls.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+
+</html>

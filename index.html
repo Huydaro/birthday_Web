@@ -16,7 +16,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: linear-gradient(135deg, #0a0a2e, #1a0a3e, #0d1b4a);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -27,16 +27,26 @@
             position: relative;
         }
 
-        /* ===== ANIMATED BACKGROUND ===== */
-        body::before {
-            content: '';
+        /* ===== SPACE BACKGROUND ===== */
+        .space-bg {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background:
-                radial-gradient(2px 2px at 10% 20%, #ff6b6b, transparent),
+            z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at 20% 30%, rgba(100, 50, 200, 0.15), transparent 60%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 100, 50, 0.08), transparent 50%);
+        }
+
+        /* Stars - Layer 1 */
+        .stars-1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(2px 2px at 10% 20%, #fff, transparent),
                 radial-gradient(2px 2px at 30% 60%, #ffd700, transparent),
                 radial-gradient(2px 2px at 50% 10%, #a18cd1, transparent),
                 radial-gradient(2px 2px at 70% 80%, #fbc2eb, transparent),
@@ -47,27 +57,315 @@
                 radial-gradient(3px 3px at 55% 75%, #fad0c4, transparent),
                 radial-gradient(4px 4px at 85% 55%, #ffecd2, transparent),
                 radial-gradient(4px 4px at 5% 50%, #a18cd1, transparent),
-                radial-gradient(4px 4px at 95% 90%, #fbc2eb, transparent);
+                radial-gradient(4px 4px at 95% 90%, #fbc2eb, transparent),
+                radial-gradient(5px 5px at 25% 35%, #fff, transparent),
+                radial-gradient(5px 5px at 65% 15%, #ffd700, transparent),
+                radial-gradient(6px 6px at 40% 80%, #a18cd1, transparent);
             background-size: 200px 200px;
             background-repeat: repeat;
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 0;
-            animation: twinkleStars 3s ease-in-out infinite alternate;
+            opacity: 0.8;
+            animation: twinkleStars 4s ease-in-out infinite alternate;
         }
 
         @keyframes twinkleStars {
             0% {
-                opacity: 0.4;
+                opacity: 0.5;
                 transform: scale(1);
             }
             100% {
-                opacity: 0.9;
-                transform: scale(1.05);
+                opacity: 1;
+                transform: scale(1.02);
             }
         }
 
-        /* ===== RAINBOW BORDER ===== */
+        /* Stars - Layer 2 (bigger, slower) */
+        .stars-2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(3px 3px at 5% 15%, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(3px 3px at 35% 55%, rgba(255, 215, 0, 0.5), transparent),
+                radial-gradient(4px 4px at 55% 5%, rgba(161, 140, 209, 0.5), transparent),
+                radial-gradient(4px 4px at 75% 75%, rgba(251, 194, 235, 0.5), transparent),
+                radial-gradient(3px 3px at 95% 35%, rgba(255, 154, 158, 0.5), transparent),
+                radial-gradient(5px 5px at 20% 95%, rgba(255, 215, 0, 0.4), transparent),
+                radial-gradient(5px 5px at 80% 45%, rgba(168, 237, 234, 0.4), transparent);
+            background-size: 300px 300px;
+            background-repeat: repeat;
+            opacity: 0.4;
+            animation: twinkleStars 6s ease-in-out infinite alternate-reverse;
+        }
+
+        /* ===== SUN ===== */
+        .sun {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff7a0, #ffd700, #ff6b00);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 215, 0, 0.4), 0 0 120px rgba(255, 215, 0, 0.2), 0 0 200px rgba(255, 215, 0, 0.1);
+            z-index: 0;
+            animation: sunGlow 3s ease-in-out infinite, sunFloat 8s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .sun::after {
+            content: '☀️';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+        }
+
+        @keyframes sunGlow {
+            0%,
+            100% {
+                box-shadow: 0 0 60px rgba(255, 215, 0, 0.4), 0 0 120px rgba(255, 215, 0, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 80px rgba(255, 215, 0, 0.6), 0 0 160px rgba(255, 215, 0, 0.3), 0 0 240px rgba(255, 215, 0, 0.1);
+            }
+        }
+
+        @keyframes sunFloat {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.05);
+            }
+        }
+
+        /* ===== GALAXY NEBULA ===== */
+        .galaxy {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle at 30% 40%, rgba(161, 140, 209, 0.08), transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(251, 194, 235, 0.06), transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.04), transparent 60%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: galaxySpin 60s linear infinite, galaxyPulse 8s ease-in-out infinite;
+            pointer-events: none;
+            filter: blur(30px);
+        }
+
+        @keyframes galaxySpin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) scale(1);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg) scale(1.1);
+            }
+        }
+
+        @keyframes galaxyPulse {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) rotate(0deg) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translate(-50%, -50%) rotate(180deg) scale(1.2);
+            }
+        }
+
+        /* ===== SHOOTING STARS ===== */
+        .shooting-star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 1;
+            pointer-events: none;
+            animation: shootStar linear infinite;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+            transform-origin: right center;
+            transform: rotate(-45deg) translateX(0);
+        }
+
+        @keyframes shootStar {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-600px, 600px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .shooting-star:nth-child(1) {
+            top: 10%;
+            left: 80%;
+            animation-duration: 8s;
+            animation-delay: 0s;
+        }
+        .shooting-star:nth-child(2) {
+            top: 20%;
+            left: 60%;
+            animation-duration: 10s;
+            animation-delay: 3s;
+        }
+        .shooting-star:nth-child(3) {
+            top: 5%;
+            left: 90%;
+            animation-duration: 7s;
+            animation-delay: 6s;
+        }
+        .shooting-star:nth-child(4) {
+            top: 30%;
+            left: 70%;
+            animation-duration: 9s;
+            animation-delay: 1s;
+        }
+        .shooting-star:nth-child(5) {
+            top: 15%;
+            left: 50%;
+            animation-duration: 11s;
+            animation-delay: 4s;
+        }
+
+        /* ===== SPACESHIP ===== */
+        .spaceship {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            font-size: 3rem;
+            animation: spaceshipFly 20s linear infinite;
+        }
+
+        @keyframes spaceshipFly {
+            0% {
+                transform: translate(100vw, 20vh) rotate(-30deg) scale(1);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-100vw, 80vh) rotate(30deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .spaceship:nth-child(1) {
+            animation-duration: 25s;
+            animation-delay: 0s;
+            font-size: 3.5rem;
+        }
+        .spaceship:nth-child(2) {
+            animation-duration: 30s;
+            animation-delay: 8s;
+            font-size: 2.5rem;
+        }
+        .spaceship:nth-child(3) {
+            animation-duration: 22s;
+            animation-delay: 15s;
+            font-size: 2rem;
+        }
+
+        /* ===== UFO ===== */
+        .ufo {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            font-size: 2.5rem;
+            animation: ufoFly 18s ease-in-out infinite;
+        }
+
+        @keyframes ufoFly {
+            0% {
+                transform: translate(-50px, 10vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(110vw, 40vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .ufo:nth-child(1) {
+            animation-duration: 20s;
+            animation-delay: 2s;
+            top: 20%;
+        }
+        .ufo:nth-child(2) {
+            animation-duration: 25s;
+            animation-delay: 10s;
+            top: 50%;
+            font-size: 2rem;
+        }
+
+        /* ===== ALIEN ===== */
+        .alien {
+            position: fixed;
+            z-index: 1;
+            pointer-events: none;
+            font-size: 2rem;
+            animation: alienWave 4s ease-in-out infinite;
+        }
+
+        .alien:nth-child(1) {
+            top: 15%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+        .alien:nth-child(2) {
+            bottom: 20%;
+            left: 5%;
+            animation-delay: 2s;
+            font-size: 1.5rem;
+        }
+
+        @keyframes alienWave {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+                opacity: 1;
+            }
+        }
+
+        /* ===== CONTAINER ===== */
         .container {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(20px);
@@ -77,7 +375,7 @@
             max-width: 850px;
             overflow: hidden;
             position: relative;
-            z-index: 1;
+            z-index: 2;
             border: 2px solid transparent;
             animation: rainbowBorder 4s linear infinite, float 6s ease-in-out infinite;
         }
@@ -121,7 +419,7 @@
             padding: 35px 25px 30px;
             text-align: center;
             overflow: hidden;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.25), rgba(255, 215, 0, 0.2), rgba(161, 140, 209, 0.2));
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 215, 0, 0.15), rgba(161, 140, 209, 0.2));
             border-bottom: 2px solid transparent;
             animation: headerBorder 4s ease-in-out infinite;
         }
@@ -145,7 +443,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.08), transparent 70%);
+            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.05), transparent 70%);
             animation: shimmer 8s ease-in-out infinite;
         }
 
@@ -228,6 +526,10 @@
             color: #fbc2eb;
             animation-delay: 1.5s;
         }
+        .subtitle i:nth-child(5) {
+            color: #ff9a9e;
+            animation-delay: 2s;
+        }
 
         @keyframes iconColor {
             0%,
@@ -291,7 +593,7 @@
             text-align: center;
             padding: 30px 20px;
             border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(255, 215, 0, 0.10), rgba(161, 140, 209, 0.10));
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 215, 0, 0.08), rgba(161, 140, 209, 0.1));
             border: 2px solid transparent;
             animation: rainbowBorder 4s linear infinite, glowPulse 3s ease-in-out infinite;
         }
@@ -360,7 +662,7 @@
             }
         }
 
-        /* ===== COUNTDOWN - COLORFUL ===== */
+        /* ===== COUNTDOWN ===== */
         .countdown {
             display: flex;
             justify-content: center;
@@ -454,7 +756,7 @@
             letter-spacing: 1px;
         }
 
-        /* ===== GIFT BOX - SUPER COLORFUL ===== */
+        /* ===== GIFT BOX ===== */
         .gift-section {
             margin: 15px auto 5px;
             display: flex;
@@ -915,7 +1217,6 @@
             font-size: 1.5rem;
             font-weight: bold;
             animation: congratsPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), congratsPulse 1.5s ease-in-out infinite 0.8s;
-            text-shadow: none;
         }
 
         @keyframes congratsPop {
@@ -1056,13 +1357,30 @@
             #giftResultIcon {
                 font-size: 2.5rem;
             }
-            .gift-controls input {
-                font-size: 0.95rem;
-                padding: 10px 16px;
+            .sun {
+                width: 50px;
+                height: 50px;
+                top: 15px;
+                right: 15px;
             }
-            .gift-controls button {
-                font-size: 1rem;
-                padding: 10px 30px;
+            .sun::after {
+                font-size: 2rem;
+            }
+            .spaceship {
+                font-size: 2rem !important;
+            }
+            .galaxy {
+                width: 200px;
+                height: 200px;
+            }
+            .ufo {
+                font-size: 1.5rem !important;
+            }
+            .alien {
+                font-size: 1.2rem !important;
+            }
+            .shooting-star::before {
+                width: 40px;
             }
         }
 
@@ -1121,17 +1439,66 @@
             #giftResultIcon {
                 font-size: 2rem;
             }
-            .gift-sparkles .sparkle {
-                font-size: 1rem !important;
+            .sun {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
             }
-            .gift-sparkles .sparkle:nth-child(5) {
-                font-size: 1.6rem !important;
+            .sun::after {
+                font-size: 1.5rem;
+            }
+            .spaceship {
+                font-size: 1.5rem !important;
+            }
+            .galaxy {
+                width: 150px;
+                height: 150px;
+            }
+            .ufo {
+                font-size: 1.2rem !important;
+            }
+            .alien {
+                font-size: 1rem !important;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- ===== SPACE BACKGROUND ===== -->
+    <div class="space-bg">
+        <div class="stars-1"></div>
+        <div class="stars-2"></div>
+    </div>
+
+    <!-- ===== SUN ===== -->
+    <div class="sun"></div>
+
+    <!-- ===== GALAXY ===== -->
+    <div class="galaxy"></div>
+
+    <!-- ===== SHOOTING STARS ===== -->
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+
+    <!-- ===== SPACESHIPS ===== -->
+    <div class="spaceship">🚀</div>
+    <div class="spaceship">🛸</div>
+    <div class="spaceship">🛰️</div>
+
+    <!-- ===== UFOs ===== -->
+    <div class="ufo">🛸</div>
+    <div class="ufo">👽</div>
+
+    <!-- ===== ALIENS ===== -->
+    <div class="alien">👾</div>
+    <div class="alien">👽</div>
+
+    <!-- ===== MAIN CONTENT ===== -->
     <div class="container">
         <header>
             <h1>🎉 រីករាយថ្ងៃកំណើត 🎉</h1>
@@ -1142,6 +1509,7 @@
                 <i class="fas fa-star"></i>
                 <i class="fas fa-heart"></i>
                 <i class="fas fa-star"></i>
+                <i class="fas fa-rocket"></i>
             </div>
         </header>
 
@@ -1174,7 +1542,7 @@
                             <span id="giftResultIcon">💝</span>
                             <span id="giftResultAmount"></span>
                             <div id="giftSmallMsg"></div>
-                            <span class="gift-badge">🎯 ពិសេសសម្រាប់តែអូន</span>
+                            <span class="gift-badge">🚀 ពិសេសសម្រាប់តែអូន</span>
                         </div>
 
                         <div class="gift-controls" id="giftControls" style="display:none;">
@@ -1246,47 +1614,47 @@
             const musicBtn = document.getElementById('musicBtn');
             const musicLabel = document.getElementById('musicLabel');
 
-            // ===== GIFT COLLECTION - MORE COLORFUL =====
+            // ===== GIFT COLLECTION - SPACE THEMED =====
             const GIFT_COLLECTION = [{
-                icon: '💝',
-                title: 'សេចក្ដីស្រឡាញ់គ្មានទីបញ្ចប់',
-                desc: 'បងស្រឡាញ់អូនច្រើនណាស់ ហើយនឹងស្រឡាញ់អូនជារៀងរហូត 💕'
+                icon: '🚀',
+                title: 'យានអវកាសទៅកាន់ភពសុបិន',
+                desc: 'បងនឹងនាំអូនហោះទៅកាន់ភពដែលមានតែសុភមង្គល 🌌'
             }, {
-                icon: '🌹',
-                title: 'ផ្កាកុលាបពណ៌ក្រហម ៩៩ ដើម',
-                desc: 'តំណាងឲ្យសេចក្ដីស្រឡាញ់ដ៏ជ្រាលជ្រៅ និងអស់កល្បជានិច្ច 🌹'
+                icon: '🌌',
+                title: 'Galaxy នៃសេចក្ដីស្រឡាញ់',
+                desc: 'សេចក្ដីស្រឡាញ់របស់បងចំពោះអូនធំដូច Galaxy គ្មានទីបញ្ចប់ 💫'
             }, {
-                icon: '💎',
-                title: 'ចិញ្ចៀនពេជ្រដ៏មានតម្លៃ',
-                desc: 'ដូចជាតម្លៃរបស់អូននៅក្នុងចិត្តបង ដែលគ្មានអ្វីអាចប្រៀបផ្ទឹមបាន 💎'
+                icon: '☀️',
+                title: 'ពន្លឺព្រះអាទិត្យដ៏កក់ក្តៅ',
+                desc: 'ដូចជាព្រះអាទិត្យដែលបំភ្លឺពិភពលោក អូនគឺជាពន្លឺនៃជីវិតបង 🌞'
             }, {
-                icon: '✈️',
-                title: 'សំបុត្រធ្វើដំណើរទៅកាន់កន្លែងសុបិន',
-                desc: 'ទៅកាន់កន្លែងដែលអូនធ្លាប់ប្រាប់បងថាចង់ទៅ 🌏'
+                icon: '🛸',
+                title: 'UFO នាំមកនូវអព្ភូតហេតុ',
+                desc: 'អ្វីដែលពិសេសបំផុតក្នុងចក្រវាលគឺអូន 👽'
             }, {
-                icon: '📖',
-                title: 'សៀវភៅកំណត់ហេតុនៃក្តីស្រឡាញ់',
-                desc: 'សៀវភៅដែលបងបានសរសេរពីអារម្មណ៍របស់បងចំពោះអូន រាល់ថ្ងៃ 📝'
+                icon: '🌠',
+                title: 'ផ្កាយដុះកន្ទុយនាំសំណាង',
+                desc: 'ពេលអូនឃើញផ្កាយដុះកន្ទុយ សូមឲ្យអូនបានសំណាងល្អជានិច្ច ✨'
             }, {
-                icon: '🎵',
-                title: 'បទចម្រៀងពិសេសសម្រាប់អូន',
-                desc: 'បទចម្រៀងដែលបងនិពន្ធឡើងសម្រាប់តែអូនម្នាក់គត់ 🎶'
+                icon: '🪐',
+                title: 'Saturn Ring នៃក្តីស្រឡាញ់',
+                desc: 'សេចក្ដីស្រឡាញ់របស់បងព័ទ្ធជុំវិញអូនដូចរង្វង់របស់ភពសៅរ៍ 💕'
             }, {
-                icon: '🌅',
-                title: 'ថ្ងៃលិចដ៏ស្រស់ស្អាតជាមួយគ្នា',
-                desc: 'ពេលវេលាដ៏មានតម្លៃដែលបងចង់ចំណាយជាមួយអូន 🌄'
+                icon: '💫',
+                title: 'ក្តីស្រឡាញ់ភ្លឺដូចផ្កាយ',
+                desc: 'បងនឹងស្រឡាញ់អូនរហូតដរាបណាផ្កាយនៅលើមេឃ 🌟'
             }, {
-                icon: '🤗',
-                title: 'ការឱបដ៏កក់ក្តៅគ្មានទីបញ្ចប់',
-                desc: 'ឱបអូនឲ្យជិត ហើយមិនដែលចង់លែងឡើយ 🤗'
+                icon: '👽',
+                title: 'ជនបរទេសដែលស្រឡាញ់អូន',
+                desc: 'បងអាចជាមនុស្សក្រៅភព ប៉ុន្តែស្នេហ៍របស់បងគឺពិតប្រាកដ 🛸'
             }, {
-                icon: '🌈',
-                title: 'ឥន្ទធនូនៃសុភមង្គល',
-                desc: 'ដូចជាពណ៌ទាំង ៧ នៃឥន្ទធនូ សុភមង្គលរបស់អូននឹងភ្លឺថ្លាជានិច្ច 🌈'
+                icon: '🌕',
+                title: 'ពន្លឺព្រះចន្ទ្រាដ៏ទន់ភ្លន់',
+                desc: 'ដូចជាពន្លឺព្រះចន្ទ្រាដែលបំភ្លឺផ្លូវអូនក្នុងរាត្រី 🌙'
             }, {
-                icon: '🦋',
-                title: 'សេរីភាពដូចមេអំបៅ',
-                desc: 'សូមឲ្យអូនមានសេរីភាព និងភាពស្រស់ស្អាតដូចមេអំបៅ 🦋'
+                icon: '🛰️',
+                title: 'ផ្កាយរណបនៃក្តីសុបិន',
+                desc: 'បងនឹងនៅក្បែរអូន ដូចផ្កាយរណបដែលវិលជុំវិញអូនជានិច្ច 📡'
             }];
 
             // ===== COUNTDOWN LOGIC =====
@@ -1311,7 +1679,7 @@
                 } else if (isTargetBirthdayToday) {
                     const age = today.getFullYear() - BIRTH_YEAR;
                     birthdayText.innerHTML = `
-                        <span class="highlight">🎊 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🎊</span>
+                        <span class="highlight">🚀 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🚀</span>
                         <br><span style="font-size:1.2rem;color:#ffd700;">17 ធ្នូ 2025</span>
                         <br><span style="font-size:1rem;color:rgba(255,255,255,0.8);display:block;margin-top:10px;">
                             <i class="fas fa-heart" style="color:#ff6b6b;"></i>
@@ -1324,9 +1692,12 @@
                         <br><span style="font-size:0.9rem;color:rgba(255,255,255,0.5);margin-top:5px;display:block;">
                             គ្រប់ជំហាននឹងនាំអូនទៅកាន់អ្វីល្អជាងមុន 🌟
                         </span>
+                        <br><span style="font-size:0.9rem;color:rgba(255,215,0,0.4);">
+                            <i class="fas fa-rocket"></i> ហោះឡើងទៅកាន់តារានិករនៃសុភមង្គល <i class="fas fa-rocket"></i>
+                        </span>
                     `;
                     countdown.style.display = 'none';
-                    createConfetti(250);
+                    createConfetti(300);
                     giftControls.style.display = 'flex';
                     if (giftPassword) giftPassword.focus();
                     if (window.birthdayCountdownInterval) {
@@ -1338,6 +1709,9 @@
                         <br><span style="font-size:1.2rem;color:#fff;">${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                         <br><span style="font-size:1rem;color:rgba(255,255,255,0.5);">
                             <i class="fas fa-hourglass-half"></i> នឹងមកដល់ក្នុងរយៈពេល
+                        </span>
+                        <br><span style="font-size:0.8rem;color:rgba(255,215,0,0.3);">
+                            <i class="fas fa-rocket"></i> កំពុងហោះកាត់ Galaxy ដើម្បីមករកអូន <i class="fas fa-rocket"></i>
                         </span>
                     `;
                     countdown.style.display = 'flex';
@@ -1375,10 +1749,10 @@
                 secondsEl.textContent = seconds.toString().padStart(2, '0');
             }
 
-            // ===== CONFETTI - RAINBOW =====
-            function createConfetti(count = 250) {
+            // ===== CONFETTI =====
+            function createConfetti(count = 300) {
                 const colors = ['#ff6b6b', '#ffd700', '#a18cd1', '#fbc2eb', '#ff9a9e', '#fad0c4', '#ffecd2', '#a8edea',
-                    '#667eea', '#764ba2', '#f093fb', '#4facfe'
+                    '#667eea', '#764ba2', '#f093fb', '#4facfe', '#ffd700', '#ff6b6b'
                 ];
                 for (let i = 0; i < count; i++) {
                     const confetti = document.createElement('div');
@@ -1437,7 +1811,7 @@
                 const gift = GIFT_COLLECTION[Math.floor(Math.random() * GIFT_COLLECTION.length)];
 
                 giftBox.classList.add('gift-open');
-                createConfetti(180);
+                createConfetti(200);
 
                 giftResult.style.display = 'block';
                 giftResultIcon.textContent = gift.icon;
@@ -1456,7 +1830,7 @@
 
                 setTimeout(() => {
                     giftBox.classList.remove('gift-open');
-                }, 3000);
+                }, 3500);
             }
 
             function tryUnlockFromInteraction(showNotYetMessage = true) {
@@ -1467,9 +1841,9 @@
                 if (!isTodayTarget) {
                     if (showNotYetMessage) {
                         giftResult.style.display = 'block';
-                        giftResultIcon.textContent = '⏳';
+                        giftResultIcon.textContent = '🚀';
                         giftResultAmount.textContent = 'មិនទាន់ដល់ថ្ងៃទី 17 ទេ';
-                        giftSmallMsg.textContent = 'សូមរង់ចាំថ្ងៃកំណើតរបស់អូន 💕';
+                        giftSmallMsg.textContent = 'កំពុងហោះកាត់ Galaxy ដើម្បីមករកអូន 💕';
                         setTimeout(() => {
                             giftResult.style.display = 'none';
                         }, 3000);
@@ -1487,7 +1861,7 @@
                     giftResult.style.display = 'block';
                     giftResultIcon.textContent = '❌';
                     giftResultAmount.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
-                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 💪';
+                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 👽';
                     setTimeout(() => {
                         giftResult.style.display = 'none';
                     }, 2500);

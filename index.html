@@ -26,7 +26,7 @@
             position: relative;
         }
 
-        /* ===== BACKGROUND ANIMATION ===== */
+        /* ===== GALAXY & SPACE BACKGROUND ===== */
         .bg-animation {
             position: fixed;
             top: 0;
@@ -35,40 +35,35 @@
             bottom: 0;
             z-index: 0;
             overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         }
 
+        /* Galaxy auras */
         .bg-orbs {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.3;
+            opacity: 0.4;
             animation: orbFloat 20s ease-in-out infinite;
         }
 
         .bg-orbs:nth-child(1) {
-            width: 400px;
-            height: 400px;
+            width: 400px; height: 400px;
             background: #ff6b6b;
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
+            top: -100px; left: -100px;
         }
 
         .bg-orbs:nth-child(2) {
-            width: 350px;
-            height: 350px;
+            width: 350px; height: 350px;
             background: #ffd700;
-            bottom: -50px;
-            right: -50px;
+            bottom: -50px; right: -50px;
             animation-delay: -5s;
         }
 
         .bg-orbs:nth-child(3) {
-            width: 300px;
-            height: 300px;
+            width: 300px; height: 300px;
             background: #a18cd1;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             animation-delay: -10s;
         }
@@ -80,35 +75,29 @@
             75% { transform: translate(30px, -20px) scale(1.05); }
         }
 
-        /* ===== STARS ===== */
+        /* Stars */
         .stars {
             position: absolute;
             width: 100%;
             height: 100%;
-            background-image:
+            background-image: 
                 radial-gradient(2px 2px at 10% 20%, #fff, transparent),
                 radial-gradient(2px 2px at 30% 60%, #ffd700, transparent),
                 radial-gradient(2px 2px at 50% 10%, #a18cd1, transparent),
                 radial-gradient(2px 2px at 70% 80%, #fbc2eb, transparent),
-                radial-gradient(2px 2px at 90% 40%, #ff9a9e, transparent),
-                radial-gradient(3px 3px at 15% 85%, #ffd700, transparent),
                 radial-gradient(3px 3px at 45% 45%, #ff6b6b, transparent),
-                radial-gradient(3px 3px at 75% 25%, #a8edea, transparent),
-                radial-gradient(4px 4px at 85% 55%, #ffecd2, transparent),
-                radial-gradient(4px 4px at 5% 50%, #a18cd1, transparent),
-                radial-gradient(4px 4px at 95% 90%, #fbc2eb, transparent);
+                radial-gradient(4px 4px at 85% 55%, #ffecd2, transparent);
             background-size: 200px 200px;
-            background-repeat: repeat;
-            opacity: 0.6;
             animation: twinkle 4s ease-in-out infinite alternate;
+            opacity: 0.7;
         }
 
         @keyframes twinkle {
             0% { opacity: 0.4; }
-            100% { opacity: 0.8; }
+            100% { opacity: 0.9; }
         }
 
-        /* ===== SHOOTING STARS ===== */
+        /* Shooting Stars */
         .shooting-star {
             position: absolute;
             width: 120px;
@@ -121,12 +110,8 @@
 
         .shooting-star::after {
             content: '';
-            position: absolute;
-            top: -3px;
-            right: 0;
-            width: 6px;
-            height: 6px;
-            background: #fff;
+            position: absolute; top: -3px; right: 0;
+            width: 6px; height: 6px; background: #fff;
             border-radius: 50%;
             box-shadow: 0 0 10px #fff, 0 0 20px #fff;
         }
@@ -137,24 +122,13 @@
         .shooting-star:nth-child(4) { top: 35%; left: 70%; animation-duration: 9s; animation-delay: 1s; }
 
         @keyframes shoot {
-            0% {
-                transform: translate(0, 0) rotate(-35deg) scaleX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: translate(0, 0) rotate(-35deg) scaleX(1);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-500px, 500px) rotate(-35deg) scaleX(0.5);
-                opacity: 0;
-            }
+            0% { transform: translate(0, 0) rotate(-35deg) scaleX(0); opacity: 0; }
+            10% { opacity: 1; transform: translate(0, 0) rotate(-35deg) scaleX(1); }
+            90% { opacity: 1; }
+            100% { transform: translate(-500px, 500px) rotate(-35deg) scaleX(0.5); opacity: 0; }
         }
 
-        /* ===== FLOATING ELEMENTS ===== */
+        /* ===== SPACESHIP & FLOATING ELEMENTS ===== */
         .float-element {
             position: fixed;
             z-index: 1;
@@ -176,27 +150,41 @@
             100% { transform: translate(0, 0) rotate(360deg) scale(1); opacity: 0.3; }
         }
 
+        /* Moving Spaceship across the Galaxy */
+        .spaceship-fly {
+            position: fixed;
+            font-size: 3rem;
+            z-index: 5;
+            animation: spaceTravel 18s linear infinite;
+            top: 10%;
+            left: -10%;
+        }
+
+        @keyframes spaceTravel {
+            0% { transform: translate(-100px, 0) rotate(45deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(115vw, 80vh) rotate(45deg); opacity: 0; }
+        }
+
         /* ===== SUN ===== */
         .sun {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 70px;
-            height: 70px;
+            top: 20px; right: 20px;
+            width: 70px; height: 70px;
             background: radial-gradient(circle, #fff7a0, #ffd700, #ff6b00);
             border-radius: 50%;
             box-shadow: 0 0 60px rgba(255,215,0,0.3), 0 0 120px rgba(255,215,0,0.1);
             z-index: 1;
             animation: sunPulse 3s ease-in-out infinite;
             pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .sun::after {
             content: '☀️';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             font-size: 2.5rem;
         }
 
@@ -305,7 +293,7 @@
             text-shadow: 0 0 40px rgba(255,215,0,0.15);
         }
 
-        /* ===== BIRTHDAY MESSAGE ===== */
+        /* ===== BIRTHDAY MESSAGE & GIFT ===== */
         .birthday-message {
             text-align: center;
             padding: 25px 20px;
@@ -404,15 +392,13 @@
         }
 
         .gift-box {
-            width: 220px;
-            height: 175px;
+            width: 220px; height: 175px;
             position: relative;
             margin: 0 auto;
         }
 
         .gift-body {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: linear-gradient(145deg, #ff6b6b, #ee5a24);
             border-radius: 16px 16px 24px 24px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.3);
@@ -426,11 +412,8 @@
 
         .gift-body::before {
             content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.15), transparent 60%);
             animation: shineMove 4s ease-in-out infinite;
         }
@@ -442,9 +425,7 @@
 
         .gift-lid {
             position: absolute;
-            top: -12px;
-            left: -8px;
-            right: -8px;
+            top: -12px; left: -8px; right: -8px;
             height: 45px;
             background: linear-gradient(145deg, #ffd700, #f59e0b);
             border-radius: 16px 16px 6px 6px;
@@ -461,8 +442,7 @@
             content: '🎀';
             font-size: 2.6rem;
             position: absolute;
-            top: -16px;
-            left: 50%;
+            top: -16px; left: 50%;
             transform: translateX(-50%);
             filter: drop-shadow(0 5px 10px rgba(0,0,0,0.2));
         }
@@ -474,10 +454,8 @@
 
         .gift-ribbon {
             position: absolute;
-            top: 0;
-            left: 50%;
-            width: 14px;
-            height: 100%;
+            top: 0; left: 50%;
+            width: 14px; height: 100%;
             background: linear-gradient(180deg, #ffd700, #f59e0b);
             transform: translateX(-50%);
             z-index: 2;
@@ -486,10 +464,8 @@
 
         .gift-ribbon-horizontal {
             position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 14px;
+            top: 50%; left: 0;
+            width: 100%; height: 14px;
             background: linear-gradient(90deg, #ffd700, #f59e0b);
             transform: translateY(-50%);
             z-index: 2;
@@ -498,10 +474,7 @@
 
         .gift-sparkles {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none;
             z-index: 3;
         }
@@ -536,7 +509,7 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* ===== GIFT RESULT ===== */
+        /* Gift Reveal Result */
         .gift-result {
             margin-top: 18px;
             padding: 20px 28px;
@@ -597,7 +570,7 @@
             margin-top: 8px;
         }
 
-        /* ===== GIFT CONTROLS ===== */
+        /* Gift controls */
         .gift-controls {
             margin-top: 14px;
             display: flex;
@@ -625,10 +598,6 @@
             border-color: #ffd700;
             box-shadow: 0 0 30px rgba(255,215,0,0.05);
             background: rgba(255,255,255,0.06);
-        }
-
-        .gift-controls input::placeholder {
-            color: rgba(255,255,255,0.25);
         }
 
         .gift-controls button {
@@ -675,9 +644,7 @@
 
         /* ===== MUSIC BUTTON ===== */
         #musicBtn {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
+            position: fixed; right: 20px; bottom: 20px;
             z-index: 100;
             padding: 10px 16px;
             border-radius: 50px;
@@ -702,12 +669,8 @@
 
         /* ===== CONFETTI ===== */
         .confetti {
-            position: fixed;
-            width: 12px;
-            height: 12px;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 999;
+            position: fixed; width: 12px; height: 12px;
+            opacity: 0; pointer-events: none; z-index: 999;
             border-radius: 2px;
         }
 
@@ -760,7 +723,6 @@
 </head>
 <body>
 
-    <!-- ===== BACKGROUND ===== -->
     <div class="bg-animation">
         <div class="bg-orbs"></div>
         <div class="bg-orbs"></div>
@@ -772,22 +734,19 @@
         <div class="shooting-star"></div>
     </div>
 
-    <!-- ===== FLOATING ELEMENTS ===== -->
-    <div class="float-element">🚀</div>
-    <div class="float-element">🛸</div>
     <div class="float-element">🌟</div>
+    <div class="float-element">🚀</div>
+    <div class="spaceship-fly">🛸</div>
 
-    <!-- ===== SUN ===== -->
     <div class="sun"></div>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <div class="container">
         <header>
             <h1>🎉 រីករាយថ្ងៃកំណើត 🎉</h1>
             <h1>ស៊ុយ សេរីកាន់ន្និកា</h1>
             <div class="subtitle">
                 <i class="fas fa-star"></i>
-                ការរាប់ថយក្រោយសម្រាប់ថ្ងៃទី 17 ខែធ្នូ ឆ្នាំ 2025
+                ការរាប់ថយក្រោយសម្រាប់ថ្ងៃទី 17 ខែធ្នូ ឆ្នាំ 2026
                 <i class="fas fa-heart"></i>
                 <i class="fas fa-star"></i>
                 <i class="fas fa-rocket"></i>
@@ -822,8 +781,8 @@
 
                         <div id="giftResult" class="gift-result" style="display:none;">
                             <span id="giftResultIcon">💝</span>
-                            <span id="giftResultAmount"></span>
-                            <div id="giftSmallMsg"></div>
+                            <span id="giftResultAmount">អូនជាពន្លឺនៃបង</span>
+                            <div id="giftSmallMsg">ស្រលាញ់អូនខ្លាំងណាស់❤️</div>
                             <span class="gift-badge">🎯 ពិសេសសម្រាប់តែអូន</span>
                         </div>
 
@@ -861,7 +820,7 @@
         </div>
 
         <footer>
-            <p>© 2026 គេហទំព័រថ្ងៃកំណើតសម្រាប់តែពន្ធតែប៉ុណ្ណោះ Kannyka 💛</p>
+            <p>© 2026 គេហទំព័រថ្ងៃកំណើតសម្រាប់តែ Kannyka 💛</p>
         </footer>
     </div>
 
@@ -870,251 +829,103 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // ===== CONFIG =====
-            const TARGET_MONTH = 11;
+            const TARGET_MONTH = 11; // ខែធ្នូ (0-indexed)
             const TARGET_DAY = 17;
-            const TARGET_YEAR = 2025;
-            const BIRTH_YEAR = 2004;
+            const TARGET_YEAR = 2026;
             const PASSWORD = 'អូនជាពន្លឺនៃបង';
 
             // ===== DOM =====
             const birthdayText = document.getElementById('birthdayText');
-            const countdown = document.getElementById('countdown');
             const daysEl = document.getElementById('days');
             const hoursEl = document.getElementById('hours');
             const minutesEl = document.getElementById('minutes');
             const secondsEl = document.getElementById('seconds');
-            const giftBox = document.getElementById('giftBox');
+            
             const giftBoxWrapper = document.getElementById('giftBoxWrapper');
+            const giftBox = document.getElementById('giftBox');
             const giftControls = document.getElementById('giftControls');
             const giftPassword = document.getElementById('giftPassword');
             const giftUnlockBtn = document.getElementById('giftUnlockBtn');
             const giftResult = document.getElementById('giftResult');
-            const giftResultAmount = document.getElementById('giftResultAmount');
-            const giftResultIcon = document.getElementById('giftResultIcon');
-            const giftSmallMsg = document.getElementById('giftSmallMsg');
             const congratsText = document.getElementById('congratsText');
-            const musicBtn = document.getElementById('musicBtn');
-            const musicLabel = document.getElementById('musicLabel');
 
-            // ===== GIFTS =====
-            const GIFTS = [
-                { icon: '💖', title: 'សេចក្ដីស្រឡាញ់គ្មានទីបញ្ចប់', desc: 'បងស្រឡាញ់អូនច្រើនជាងផ្កាយទាំងអស់លើមេឃ' },
-                { icon: '🌹', title: 'ផ្កាកុលាប ៩៩ ដើម', desc: 'តំណាងសេចក្ដីស្រឡាញ់ដ៏ជ្រាលជ្រៅគ្មានទីបញ្ចប់' },
-                { icon: '💎', title: 'ពេជ្រនៃក្តីស្រឡាញ់', desc: 'អូនជាតម្លៃដ៏ថ្លៃថ្លាបំផុតក្នុងជីវិតបង' },
-                { icon: '🌌', title: 'ចក្រវាលនៃក្តីសុបិន', desc: 'បងនឹងនាំអូនទៅកាន់ចក្រវាលនៃសុភមង្គល' },
-                { icon: '☀️', title: 'ពន្លឺព្រះអាទិត្យនៃជីវិត', desc: 'អូនគឺជាពន្លឺបំភ្លឺផ្លូវជីវិតបង' },
-                { icon: '🌙', title: 'ពន្លឺព្រះចន្ទ្រាដ៏ទន់ភ្លន់', desc: 'បងនឹងនៅក្បែរអូនគ្រប់រាត្រីដ៏ស្ងប់' },
-                { icon: '🌈', title: 'ឥន្ទធនូនៃក្តីសង្ឃឹម', desc: 'សូមឲ្យអូនមានសុភមង្គលគ្រប់ពណ៌នៃឥន្ទធនូ' },
-                { icon: '🦋', title: 'សេរីភាពដូចមេអំបៅ', desc: 'សូមឲ្យអូនហោះហើរទៅរកសុបិនដោយសេរី' },
-                { icon: '💫', title: 'ផ្កាយនៃក្តីស្រឡាញ់អស់កល្ប', desc: 'បងនឹងស្រឡាញ់អូនដរាបណាផ្កាយនៅលើមេឃ' },
-                { icon: '🤗', title: 'ការឱបដ៏កក់ក្តៅអស់កល្ប', desc: 'សន្យាថានឹងមិនដែលលែងអូនឡើយ' }
-            ];
+            // Set target date (Dec 17, 2026)
+            const targetDate = new Date(TARGET_YEAR, TARGET_MONTH, TARGET_DAY, 0, 0, 0).getTime();
 
-            // ===== COUNTDOWN =====
-            function startCountdown() {
-                const target = new Date(TARGET_YEAR, TARGET_MONTH, TARGET_DAY);
-                const now = new Date();
-                const isToday = now.getDate() === TARGET_DAY && now.getMonth() === TARGET_MONTH && now.getFullYear() === TARGET_YEAR;
-
-                if (now > target && !isToday) {
-                    birthdayText.innerHTML = `<span style="color:#ff6b6b;">ថ្ងៃកំណើតបានកន្លងផុតហើយ</span>`;
-                    countdown.style.display = 'none';
-                    if (window.timer) clearInterval(window.timer);
-                    return;
-                }
-
-                if (isToday) {
-                    const age = now.getFullYear() - BIRTH_YEAR;
-                    birthdayText.innerHTML = `
-                        <span class="highlight">🎊 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🎊</span>
-                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.7);margin-top:5px;display:block;">
-                            <i class="fas fa-heart" style="color:#ff6b6b;"></i>
-                            សូមឲ្យអូនមានសុភមង្គល សុខភាពល្អ និងស្នេហ៍ជារៀងរហូត
-                            <i class="fas fa-heart" style="color:#ff6b6b;"></i>
-                        </span>
-                        <br><span style="font-size:0.9rem;color:rgba(255,255,255,0.4);">
-                            <i class="fas fa-rocket"></i> ហោះឡើងទៅកាន់តារានិករនៃសុភមង្គល <i class="fas fa-rocket"></i>
-                        </span>
-                    `;
-                    countdown.style.display = 'none';
-                    createConfetti(300);
-                    giftControls.style.display = 'flex';
-                    if (window.timer) clearInterval(window.timer);
-                    return;
-                }
-
-                birthdayText.innerHTML = `
-                    <span style="color:#ffd700;">ថ្ងៃកំណើតរបស់អូន</span>
-                    <br><span style="font-size:1.2rem;">${target.toLocaleDateString('km-KH', { day:'numeric', month:'long', year:'numeric' })}</span>
-                    <br><span style="font-size:0.9rem;color:rgba(255,255,255,0.3);">
-                        <i class="fas fa-hourglass-half"></i> នឹងមកដល់ក្នុងរយៈពេល
-                    </span>
-                `;
-                countdown.style.display = 'flex';
-                updateCountdown(target);
-                window.timer = setInterval(() => updateCountdown(target), 1000);
-                createMiniConfetti();
-            }
-
-            function updateCountdown(target) {
+            function updateCountdown() {
                 const now = new Date().getTime();
-                const remain = target.getTime() - now;
-                if (remain <= 0) {
-                    daysEl.textContent = '0';
-                    hoursEl.textContent = '00';
-                    minutesEl.textContent = '00';
-                    secondsEl.textContent = '00';
-                    if (window.timer) clearInterval(window.timer);
-                    startCountdown();
+                const difference = targetDate - now;
+
+                if (difference <= 0) {
+                    // When time is up
+                    daysEl.innerText = "0";
+                    hoursEl.innerText = "0";
+                    minutesEl.innerText = "0";
+                    secondsEl.innerText = "0";
+                    birthdayText.innerHTML = "🎉 <span class='highlight'>រីករាយថ្ងៃកំណើត</span> ស៊ុយ សេរីកាន់ន្និកា 🎉";
                     return;
                 }
-                const d = Math.floor(remain / (1000*60*60*24));
-                const h = Math.floor((remain % (1000*60*60*24)) / (1000*60*60));
-                const m = Math.floor((remain % (1000*60*60)) / (1000*60));
-                const s = Math.floor((remain % (1000*60)) / 1000);
-                daysEl.textContent = d;
-                hoursEl.textContent = String(h).padStart(2, '0');
-                minutesEl.textContent = String(m).padStart(2, '0');
-                secondsEl.textContent = String(s).padStart(2, '0');
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                daysEl.innerText = days;
+                hoursEl.innerText = hours;
+                minutesEl.innerText = minutes;
+                secondsEl.innerText = seconds;
+                
+                birthdayText.innerText = "នៅសល់ពេលទៀតទើបដល់ថ្ងៃកំណើតអូន!";
             }
 
-            // ===== CONFETTI =====
-            function createConfetti(count = 300) {
-                const colors = ['#ff6b6b', '#ffd700', '#a18cd1', '#fbc2eb', '#ff9a9e', '#fad0c4', '#a8edea', '#667eea', '#f093fb', '#4facfe'];
-                for (let i = 0; i < count; i++) {
-                    const el = document.createElement('div');
-                    el.className = 'confetti';
-                    el.style.left = Math.random() * 100 + 'vw';
-                    el.style.top = '-20px';
-                    el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    const size = Math.random() * 14 + 4;
-                    el.style.width = size + 'px';
-                    el.style.height = size + 'px';
-                    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                    el.style.transform = `rotate(${Math.random() * 360}deg)`;
-                    document.body.appendChild(el);
-                    animateConfetti(el);
-                }
-            }
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
 
-            function createMiniConfetti() {
-                const colors = ['#ffd700', '#ff6b6b', '#a18cd1', '#fbc2eb'];
-                for (let i = 0; i < 40; i++) {
-                    const el = document.createElement('div');
-                    el.className = 'confetti';
-                    el.style.left = Math.random() * 100 + 'vw';
-                    el.style.top = '-10px';
-                    el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    const size = Math.random() * 8 + 3;
-                    el.style.width = size + 'px';
-                    el.style.height = size + 'px';
-                    el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                    document.body.appendChild(el);
-                    animateConfetti(el, 1.5);
-                }
-            }
-
-            function animateConfetti(el, mult = 1) {
-                const dur = (Math.random() * 2 + 1.5) * mult;
-                const horiz = Math.random() * 500 - 250;
-                el.style.opacity = '1';
-                el.style.transition = `all ${dur}s cubic-bezier(0.1, 0.8, 0.2, 1)`;
-                setTimeout(() => {
-                    el.style.transform = `translate(${horiz}px, ${window.innerHeight + 50}px) rotate(${Math.random() * 720}deg)`;
-                    el.style.opacity = '0';
-                }, 10);
-                setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, dur * 1000 + 100);
-            }
-
-            // ===== GIFT =====
-            function revealGift() {
-                const gift = GIFTS[Math.floor(Math.random() * GIFTS.length)];
+            // Gift box logic
+            giftBoxWrapper.addEventListener('click', function() {
                 giftBox.classList.add('gift-open');
-                createConfetti(200);
-                giftResult.style.display = 'block';
-                giftResultIcon.textContent = gift.icon;
-                giftResultAmount.textContent = `🎁 ${gift.title}`;
-                giftSmallMsg.textContent = gift.desc;
-                const audio = document.getElementById('bgAudio');
-                if (audio && audio.paused) { try { audio.play(); } catch(e) {} }
-                if (musicLabel) {
-                    musicLabel.textContent = 'កំពុងចាក់';
-                    musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">កំពុងចាក់</span>';
-                }
-                setTimeout(() => giftBox.classList.remove('gift-open'), 3500);
-            }
-
-            function unlock(showMsg = true) {
-                const now = new Date();
-                const isToday = now.getDate() === TARGET_DAY && now.getMonth() === TARGET_MONTH;
-                if (!isToday) {
-                    if (showMsg) {
-                        giftResult.style.display = 'block';
-                        giftResultIcon.textContent = '🚀';
-                        giftResultAmount.textContent = 'មិនទាន់ដល់ថ្ងៃទី 17 ទេ';
-                        giftSmallMsg.textContent = 'កំពុងហោះកាត់ Galaxy ដើម្បីមករកអូន 💕';
-                        setTimeout(() => giftResult.style.display = 'none', 2800);
-                    }
-                    return;
-                }
-                const pw = giftPassword ? giftPassword.value.trim() : '';
-                if (pw === PASSWORD) {
-                    revealGift();
-                    congratsText.style.display = 'block';
-                    giftPassword.value = '';
-                    setTimeout(() => congratsText.style.display = 'none', 5000);
-                } else {
-                    giftResult.style.display = 'block';
-                    giftResultIcon.textContent = '❌';
-                    giftResultAmount.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
-                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 💪';
-                    setTimeout(() => giftResult.style.display = 'none', 2500);
-                }
-            }
-
-            // ===== EVENTS =====
-            giftBoxWrapper.addEventListener('click', () => {
-                if (giftControls.style.display === 'none') {
+                setTimeout(() => {
                     giftControls.style.display = 'flex';
-                    if (giftPassword) giftPassword.focus();
-                    return;
-                }
-                unlock(true);
+                }, 500);
             });
 
-            giftUnlockBtn.addEventListener('click', () => unlock(false));
-            giftPassword.addEventListener('keypress', (e) => { if (e.key === 'Enter') unlock(false); });
-
-            // ===== MUSIC =====
-            const bgAudio = document.createElement('audio');
-            bgAudio.id = 'bgAudio';
-            bgAudio.src = 'music/Happy.mp3';
-            bgAudio.loop = true;
-            bgAudio.preload = 'auto';
-            bgAudio.volume = 0.4;
-            document.body.appendChild(bgAudio);
-            let musicPlaying = false;
-
-            musicBtn.addEventListener('click', function() {
-                if (!musicPlaying) {
-                    bgAudio.play().then(() => {
-                        musicPlaying = true;
-                        musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">បិទភ្លេង</span>';
-                    }).catch(() => {
-                        musicBtn.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span>';
-                    });
+            // Unlock logic
+            giftUnlockBtn.addEventListener('click', function() {
+                if (giftPassword.value.trim() === PASSWORD) {
+                    giftControls.style.display = 'none';
+                    giftResult.style.display = 'block';
+                    congratsText.style.display = 'block';
+                    createConfetti();
                 } else {
-                    bgAudio.pause();
-                    musicPlaying = false;
-                    musicBtn.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span>';
+                    alert('ពាក្យសម្ងាត់មិនត្រឹមត្រូវទេ ព្យាយាមម្តងទៀត!');
+                    giftPassword.value = '';
                 }
             });
 
-            // ===== INIT =====
-            startCountdown();
-            const now = new Date();
-            if (now.getDate() === TARGET_DAY && now.getMonth() === TARGET_MONTH) {
-                giftControls.style.display = 'flex';
+            // Confetti effect on unlock
+            function createConfetti() {
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -10 + 'vh';
+                    confetti.style.backgroundColor = ['#ff6b6b', '#ffd700', '#a18cd1', '#fbc2eb', '#ffecd2'][Math.floor(Math.random() * 5)];
+                    confetti.style.opacity = Math.random();
+                    confetti.style.transform = `scale(${Math.random() * 1.5 + 0.5}) rotate(${Math.random() * 360}deg)`;
+                    document.body.appendChild(confetti);
+
+                    const animation = confetti.animate([
+                        { transform: `translateY(-10vh) rotate(0deg)`, opacity: 1 },
+                        { transform: `translateY(110vh) rotate(720deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+                        fill: 'forwards'
+                    });
+
+                    animation.onfinish = () => confetti.remove();
+                }
             }
         });
     </script>

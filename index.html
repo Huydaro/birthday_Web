@@ -27,7 +27,6 @@
             position: relative;
         }
 
-        /* Stars background */
         body::before {
             content: '';
             position: fixed;
@@ -310,12 +309,13 @@
             letter-spacing: 1px;
         }
 
-        /* Gift Box Styles - Enhanced */
+        /* ===== GIFT BOX - NEW DESIGN ===== */
         .gift-section {
             margin: 15px auto 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            width: 100%;
         }
 
         .gift-box-wrapper {
@@ -329,8 +329,8 @@
         }
 
         .gift-box {
-            width: 200px;
-            height: 170px;
+            width: 220px;
+            height: 180px;
             position: relative;
             margin: 0 auto;
         }
@@ -338,7 +338,7 @@
         .gift-body {
             width: 100%;
             height: 100%;
-            background: linear-gradient(145deg, #ff5f6d, #ffc371);
+            background: linear-gradient(145deg, #667eea, #764ba2);
             border-radius: 15px 15px 25px 25px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), inset 0 -5px 0 rgba(0, 0, 0, 0.1);
             display: flex;
@@ -349,16 +349,28 @@
             transform-origin: top center;
             position: relative;
             overflow: hidden;
+            transition: all 0.5s ease;
         }
 
-        .gift-body::after {
-            content: '🎁';
-            font-size: 4rem;
-            opacity: 0.1;
+        .gift-body::before {
+            content: '';
             position: absolute;
-            bottom: -20px;
-            right: -20px;
-            transform: rotate(15deg);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.1), transparent 60%);
+            animation: giftShine 4s ease-in-out infinite;
+        }
+
+        @keyframes giftShine {
+            0%,
+            100% {
+                transform: translateX(-30%) rotate(0deg);
+            }
+            50% {
+                transform: translateX(30%) rotate(5deg);
+            }
         }
 
         .gift-lid {
@@ -366,8 +378,8 @@
             top: -12px;
             left: -8px;
             right: -8px;
-            height: 45px;
-            background: linear-gradient(145deg, #ff9a9e, #f6c3a6);
+            height: 48px;
+            background: linear-gradient(145deg, #a78bfa, #7c3aed);
             border-radius: 15px 15px 5px 5px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transform-origin: center bottom;
@@ -376,22 +388,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.3);
         }
 
         .gift-lid::before {
             content: '🎀';
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             position: absolute;
-            top: -15px;
+            top: -18px;
             left: 50%;
             transform: translateX(-50%);
             filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
         }
 
         .gift-open .gift-lid {
-            transform: translateY(-85px) rotateX(60deg) scale(0.9);
+            transform: translateY(-90px) rotateX(60deg) scale(0.9);
             opacity: 0.9;
         }
 
@@ -399,12 +409,12 @@
             position: absolute;
             top: 0;
             left: 50%;
-            width: 12px;
+            width: 14px;
             height: 100%;
-            background: linear-gradient(180deg, #ffd700, #ff6b6b);
+            background: linear-gradient(180deg, #ffd700, #f59e0b);
             transform: translateX(-50%);
             z-index: 2;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         .gift-ribbon-horizontal {
@@ -412,11 +422,11 @@
             top: 50%;
             left: 0;
             width: 100%;
-            height: 12px;
-            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            height: 14px;
+            background: linear-gradient(90deg, #ffd700, #f59e0b);
             transform: translateY(-50%);
             z-index: 2;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
         }
 
         .gift-sparkles {
@@ -431,7 +441,7 @@
 
         .sparkle {
             position: absolute;
-            font-size: 1rem;
+            font-size: 1.2rem;
             animation: sparkleFloat 3s ease-in-out infinite;
         }
 
@@ -441,29 +451,36 @@
             animation-delay: 0s;
         }
         .sparkle:nth-child(2) {
-            top: 20%;
-            right: 15%;
+            top: 15%;
+            right: 12%;
             animation-delay: 0.8s;
         }
         .sparkle:nth-child(3) {
-            bottom: 25%;
-            left: 20%;
+            bottom: 20%;
+            left: 15%;
             animation-delay: 1.6s;
         }
         .sparkle:nth-child(4) {
             bottom: 15%;
-            right: 10%;
+            right: 8%;
             animation-delay: 2.4s;
+        }
+        .sparkle:nth-child(5) {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 1.2s;
+            font-size: 2rem;
         }
 
         @keyframes sparkleFloat {
             0%,
             100% {
-                transform: translateY(0) scale(0.8);
+                transform: translateY(0) scale(0.8) rotate(0deg);
                 opacity: 0.3;
             }
             50% {
-                transform: translateY(-15px) scale(1.2);
+                transform: translateY(-15px) scale(1.3) rotate(180deg);
                 opacity: 1;
             }
         }
@@ -471,29 +488,33 @@
         .gift-body .gift-label {
             position: relative;
             z-index: 4;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #fff;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.15);
-            padding: 8px 18px;
-            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 22px;
+            border-radius: 25px;
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
         }
 
+        /* ===== GIFT RESULT - BEAUTIFUL ===== */
         .gift-result {
-            margin-top: 15px;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 107, 0.10));
-            border-radius: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            animation: resultAppear 0.6s ease-out;
+            margin-top: 20px;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 107, 107, 0.08));
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            animation: resultAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             text-align: center;
+            width: 100%;
+            max-width: 500px;
         }
 
         @keyframes resultAppear {
             0% {
-                transform: scale(0.8) translateY(20px);
+                transform: scale(0.7) translateY(30px);
                 opacity: 0;
             }
             100% {
@@ -503,16 +524,35 @@
         }
 
         #giftResultAmount {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: #ffd700;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #giftResultIcon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: iconPop 1s ease-out;
+        }
+
+        @keyframes iconPop {
+            0% {
+                transform: scale(0) rotate(-180deg);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
         }
 
         #giftSmallMsg {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
             margin-top: 5px;
+            line-height: 1.6;
         }
 
         .gift-controls {
@@ -520,16 +560,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
         }
 
         .gift-controls input {
-            padding: 10px 16px;
+            padding: 12px 20px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             background: rgba(255, 255, 255, 0.06);
             color: #fff;
-            width: 200px;
+            width: 100%;
             text-align: center;
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -539,6 +581,7 @@
             outline: none;
             border-color: #ffd700;
             box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .gift-controls input::placeholder {
@@ -546,39 +589,57 @@
         }
 
         .gift-controls button {
-            padding: 10px 30px;
+            padding: 12px 40px;
             border-radius: 12px;
             border: none;
-            background: linear-gradient(135deg, #ffd700, #ff6b6b);
-            color: #fff;
+            background: linear-gradient(135deg, #ffd700, #f59e0b);
+            color: #1a1a2e;
             cursor: pointer;
             font-size: 1.1rem;
             font-weight: bold;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 5px 25px rgba(255, 215, 0, 0.25);
+            width: 100%;
         }
 
         .gift-controls button:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .gift-controls button:active {
+            transform: scale(0.95);
         }
 
         #congratsText {
             color: #ffd700;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            animation: congratsPop 0.6s ease-out;
+            animation: congratsPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
 
         @keyframes congratsPop {
             0% {
-                transform: scale(0);
+                transform: scale(0) rotate(-20deg);
                 opacity: 0;
             }
             100% {
-                transform: scale(1);
+                transform: scale(1) rotate(0deg);
                 opacity: 1;
             }
+        }
+
+        /* ===== BADGE ===== */
+        .gift-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #f59e0b);
+            color: #1a1a2e;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
         footer {
@@ -619,7 +680,6 @@
             box-shadow: 0 5px 30px rgba(255, 215, 0, 0.15);
         }
 
-        /* Confetti Styles */
         .confetti {
             position: fixed;
             width: 12px;
@@ -630,7 +690,6 @@
             border-radius: 2px;
         }
 
-        /* Responsive */
         @media (max-width: 640px) {
             header h1 {
                 font-size: 1.8rem;
@@ -655,19 +714,19 @@
                 font-size: 1.8rem;
             }
             .gift-box {
-                width: 160px;
-                height: 140px;
+                width: 170px;
+                height: 145px;
             }
             .gift-body {
                 font-size: 1rem;
             }
             .gift-lid {
-                height: 38px;
+                height: 40px;
                 top: -10px;
             }
             .gift-lid::before {
-                font-size: 2rem;
-                top: -12px;
+                font-size: 2.2rem;
+                top: -14px;
             }
             #musicBtn {
                 right: 15px;
@@ -675,8 +734,14 @@
                 padding: 10px 14px;
                 font-size: 0.8rem;
             }
-            .gift-controls input {
-                width: 160px;
+            .gift-result {
+                padding: 15px 20px;
+            }
+            #giftResultAmount {
+                font-size: 1.6rem;
+            }
+            #giftResultIcon {
+                font-size: 2.2rem;
             }
         }
 
@@ -707,30 +772,41 @@
                 font-size: 0.7rem;
             }
             .gift-box {
-                width: 130px;
-                height: 115px;
+                width: 140px;
+                height: 120px;
             }
             .gift-body {
                 font-size: 0.85rem;
                 border-radius: 12px;
             }
             .gift-lid {
-                height: 32px;
+                height: 34px;
                 top: -8px;
                 border-radius: 12px 12px 4px 4px;
             }
             .gift-lid::before {
-                font-size: 1.6rem;
-                top: -10px;
+                font-size: 1.8rem;
+                top: -12px;
             }
             .gift-ribbon {
-                width: 8px;
+                width: 10px;
             }
             .gift-ribbon-horizontal {
-                height: 8px;
+                height: 10px;
             }
             #giftResultAmount {
                 font-size: 1.3rem;
+            }
+            #giftResultIcon {
+                font-size: 1.8rem;
+            }
+            .gift-controls input {
+                font-size: 0.9rem;
+                padding: 10px 16px;
+            }
+            .gift-controls button {
+                font-size: 1rem;
+                padding: 10px 30px;
             }
         }
     </style>
@@ -764,8 +840,9 @@
                                     <div class="gift-sparkles">
                                         <span class="sparkle">✨</span>
                                         <span class="sparkle">⭐</span>
-                                        <span class="sparkle">✨</span>
                                         <span class="sparkle">🌟</span>
+                                        <span class="sparkle">💫</span>
+                                        <span class="sparkle">🎁</span>
                                     </div>
                                     <span class="gift-label">🎁 អំណោយរបស់អ្នក</span>
                                 </div>
@@ -773,13 +850,15 @@
                         </div>
 
                         <div id="giftResult" class="gift-result" style="display:none;">
-                            <div id="giftResultAmount"></div>
+                            <span id="giftResultIcon">💝</span>
+                            <span id="giftResultAmount"></span>
                             <div id="giftSmallMsg"></div>
+                            <span class="gift-badge">🎯 ពិសេសសម្រាប់តែអូន</span>
                         </div>
 
                         <div class="gift-controls" id="giftControls" style="display:none;">
                             <input id="giftPassword" type="password" placeholder="🔑 បញ្ចូលពាក្យសម្ងាត់" maxlength="30">
-                            <button id="giftUnlockBtn"><i class="fas fa-unlock"></i> បើកអំណោយ</button>
+                            <button id="giftUnlockBtn"><i class="fas fa-unlock-alt"></i> បើកអំណោយ</button>
                             <div id="congratsText" style="display:none;">
                                 <i class="fas fa-gift"></i> សូមអបអរសាទរ! 🎉
                             </div>
@@ -820,7 +899,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // ===== CONFIGURATION =====
-            const TARGET_BIRTHDAY_MONTH = 11; // December (0-indexed)
+            const TARGET_BIRTHDAY_MONTH = 11;
             const TARGET_BIRTHDAY_DAY = 17;
             const TARGET_BIRTHDAY_YEAR = 2025;
             const BIRTH_YEAR = 2004;
@@ -840,10 +919,46 @@
             const giftUnlockBtn = document.getElementById('giftUnlockBtn');
             const giftResult = document.getElementById('giftResult');
             const giftResultAmount = document.getElementById('giftResultAmount');
+            const giftResultIcon = document.getElementById('giftResultIcon');
             const giftSmallMsg = document.getElementById('giftSmallMsg');
             const congratsText = document.getElementById('congratsText');
             const musicBtn = document.getElementById('musicBtn');
             const musicLabel = document.getElementById('musicLabel');
+
+            // ===== GIFT ITEMS =====
+            const GIFT_COLLECTION = [{
+                icon: '💝',
+                title: 'សេចក្ដីស្រឡាញ់គ្មានទីបញ្ចប់',
+                desc: 'បងស្រឡាញ់អូនច្រើនណាស់ ហើយនឹងស្រឡាញ់អូនជារៀងរហូត 💕'
+            }, {
+                icon: '🌹',
+                title: 'ផ្កាកុលាបពណ៌ក្រហម ៩៩ ដើម',
+                desc: 'តំណាងឲ្យសេចក្ដីស្រឡាញ់ដ៏ជ្រាលជ្រៅ និងអស់កល្បជានិច្ច 🌹'
+            }, {
+                icon: '💎',
+                title: 'ចិញ្ចៀនពេជ្រដ៏មានតម្លៃ',
+                desc: 'ដូចជាតម្លៃរបស់អូននៅក្នុងចិត្តបង ដែលគ្មានអ្វីអាចប្រៀបផ្ទឹមបាន 💎'
+            }, {
+                icon: '✈️',
+                title: 'សំបុត្រធ្វើដំណើរទៅកាន់កន្លែងសុបិន',
+                desc: 'ទៅកាន់កន្លែងដែលអូនធ្លាប់ប្រាប់បងថាចង់ទៅ 🌏'
+            }, {
+                icon: '📖',
+                title: 'សៀវភៅកំណត់ហេតុនៃក្តីស្រឡាញ់',
+                desc: 'សៀវភៅដែលបងបានសរសេរពីអារម្មណ៍របស់បងចំពោះអូន រាល់ថ្ងៃ 📝'
+            }, {
+                icon: '🎵',
+                title: 'បទចម្រៀងពិសេសសម្រាប់អូន',
+                desc: 'បទចម្រៀងដែលបងនិពន្ធឡើងសម្រាប់តែអូនម្នាក់គត់ 🎶'
+            }, {
+                icon: '🌅',
+                title: 'ថ្ងៃលិចដ៏ស្រស់ស្អាតជាមួយគ្នា',
+                desc: 'ពេលវេលាដ៏មានតម្លៃដែលបងចង់ចំណាយជាមួយអូន 🌄'
+            }, {
+                icon: '🤗',
+                title: 'ការឱបដ៏កក់ក្តៅគ្មានទីបញ្ចប់',
+                desc: 'ឱបអូនឲ្យជិត ហើយមិនដែលចង់លែងឡើយ 🤗'
+            }];
 
             // ===== COUNTDOWN LOGIC =====
             function startCountdown() {
@@ -874,11 +989,6 @@
                             សូមឲ្យអូនមានកម្លាំងក្នុងចិត្ត សុខភាពល្អ និងមនុស្សល្អៗនៅជុំវិញ
                             <i class="fas fa-heart" style="color:#ff6b6b;"></i>
                         </span>
-                        <br><span style="font-size:0.95rem;color:rgba(255,255,255,0.6);">
-                            <i class="fas fa-star" style="color:#ffd700;"></i>
-                            អ្វីដែលធ្លាប់ឈឺ សូមឲ្យវាស្ងប់
-                            <i class="fas fa-star" style="color:#ffd700;"></i>
-                        </span>
                         <br><br><span style="font-size:1rem;color:rgba(255,255,255,0.7);font-style:italic;">
                             "ឲ្យអូនរស់នៅក្នុងឆ្នាំថ្មីដោយចិត្តដូចទឹក ស្ងប់ ស្រាល និងច្បាស់"
                         </span>
@@ -888,14 +998,12 @@
                     `;
                     countdown.style.display = 'none';
                     createConfetti(200);
-                    // Show gift controls for password entry
                     giftControls.style.display = 'flex';
                     if (giftPassword) giftPassword.focus();
                     if (window.birthdayCountdownInterval) {
                         clearInterval(window.birthdayCountdownInterval);
                     }
                 } else {
-                    const daysUntil = calculateDaysUntil(nextBirthdayDate);
                     birthdayText.innerHTML = `
                         <span style="color:#ffd700;">ថ្ងៃកំណើតរបស់អូន</span>
                         <br><span style="font-size:1.2rem;color:#fff;">${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
@@ -946,7 +1054,9 @@
 
             // ===== CONFETTI =====
             function createConfetti(count = 200) {
-                const colors = ['#ffd700', '#ff6b6b', '#ff9a9e', '#fbc2eb', '#a18cd1', '#fad0c4', '#ffecd2', '#a8edea'];
+                const colors = ['#ffd700', '#ff6b6b', '#ff9a9e', '#fbc2eb', '#a18cd1', '#fad0c4', '#ffecd2', '#a8edea', '#667eea',
+                    '#764ba2'
+                ];
                 for (let i = 0; i < count; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -964,7 +1074,7 @@
             }
 
             function createMiniConfetti() {
-                const colors = ['#ffd700', '#ff6b6b', '#ff9a9e'];
+                const colors = ['#ffd700', '#ff6b6b', '#ff9a9e', '#a18cd1'];
                 for (let i = 0; i < 40; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
@@ -1001,26 +1111,33 @@
 
             // ===== GIFT LOGIC =====
             function revealGift() {
-                const amountText = '១០០០០៛';
+                // Pick a random gift from collection
+                const gift = GIFT_COLLECTION[Math.floor(Math.random() * GIFT_COLLECTION.length)];
+
                 giftBox.classList.add('gift-open');
                 createConfetti(150);
 
-                // Show result
+                // Show result with beautiful animation
                 giftResult.style.display = 'block';
-                giftResultAmount.textContent = `🎁 អ្នកទទួលបាន ${amountText}`;
-                giftSmallMsg.textContent = 'សូមរីករាយជាមួយអំណោយនេះ! 💛';
+                giftResultIcon.textContent = gift.icon;
+                giftResultAmount.textContent = `🎁 ${gift.title}`;
+                giftSmallMsg.textContent = gift.desc;
 
-                // Play music if available
+                // Play music
                 const audio = document.getElementById('bgAudio');
                 if (audio && audio.paused) {
                     try { audio.play(); } catch (e) { /* ignore */ }
                 }
 
-                // Update music button
                 if (musicLabel) {
                     musicLabel.textContent = 'កំពុងចាក់';
                     musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">កំពុងចាក់</span>';
                 }
+
+                // Reset gift box after a moment
+                setTimeout(() => {
+                    giftBox.classList.remove('gift-open');
+                }, 3000);
             }
 
             function tryUnlockFromInteraction(showNotYetMessage = true) {
@@ -1031,11 +1148,12 @@
                 if (!isTodayTarget) {
                     if (showNotYetMessage) {
                         giftResult.style.display = 'block';
-                        giftResultAmount.textContent = '⏳ មិនទាន់ដល់ថ្ងៃទី 17 ទេ';
-                        giftSmallMsg.textContent = 'សូមរង់ចាំថ្ងៃកំណើតរបស់អូន';
+                        giftResultIcon.textContent = '⏳';
+                        giftResultAmount.textContent = 'មិនទាន់ដល់ថ្ងៃទី 17 ទេ';
+                        giftSmallMsg.textContent = 'សូមរង់ចាំថ្ងៃកំណើតរបស់អូន 💕';
                         setTimeout(() => {
                             giftResult.style.display = 'none';
-                        }, 2500);
+                        }, 3000);
                     }
                     return;
                 }
@@ -1048,11 +1166,12 @@
                     setTimeout(() => congratsText.style.display = 'none', 5000);
                 } else {
                     giftResult.style.display = 'block';
-                    giftResultAmount.textContent = '❌ ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
-                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត';
+                    giftResultIcon.textContent = '❌';
+                    giftResultAmount.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
+                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 💪';
                     setTimeout(() => {
                         giftResult.style.display = 'none';
-                    }, 2200);
+                    }, 2500);
                 }
             }
 
@@ -1086,7 +1205,7 @@
             bgAudio.src = 'music/Happy.mp3';
             bgAudio.loop = true;
             bgAudio.preload = 'auto';
-            bgAudio.volume = 0.6;
+            bgAudio.volume = 0.5;
             document.body.appendChild(bgAudio);
 
             let musicPlaying = false;
@@ -1109,7 +1228,6 @@
             // ===== INIT =====
             startCountdown();
 
-            // Check if it's birthday and auto-show controls
             const today = new Date();
             if (today.getDate() === TARGET_BIRTHDAY_DAY &&
                 today.getMonth() === TARGET_BIRTHDAY_MONTH) {

@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>គេហទំព័រថ្ងៃកំណើតពន្ធខ្ញុំ</title>
+    <title>រីករាយថ្ងៃកំណើត ស៊ុយ សេរីកាន់ន្និកា</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,456 +16,837 @@
         }
 
         body {
-            background: linear-gradient(135deg, #e3e3e3, #f3e5f5);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            color: #333;
-        }
-
-        .container {
-            background-color: rgb(165, 162, 191);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 800px;
-            overflow: hidden;
-        }
-
-        header {
+            color: #fff;
+            overflow-x: hidden;
             position: relative;
-            color: rgb(255, 255, 255);
-            padding: 25px;
-            text-align: center;
-            overflow: hidden;
-            /* កុំឲ្យ layer លេចចេញក្រៅ */
         }
 
-        header h1 {
-            text-shadow: 2px 2px 6px rgba(43, 153, 163, 0.696);
-            /* ស្រមោលក្រោយអក្សរ */
-        }
-
-
-        header::before {
-            content: "";
-            position: absolute;
+        /* Stars background */
+        body::before {
+            content: '';
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcqy1YzX0tsuMQNDgz3JBW9yGyUGC9pixYsQ&s);
-            background-size: cover;
-            background-position: center;
-            filter: blur(1px);
-            /* បន្ថយភាពច្បាស់ */
-            z-index: 1;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+                radial-gradient(2px 2px at 50px 160px, #ddd, transparent),
+                radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.6), transparent),
+                radial-gradient(2px 2px at 130px 80px, #fff, transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.7), transparent);
+            background-size: 200px 200px;
+            background-repeat: repeat;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
+            animation: twinkle 4s ease-in-out infinite alternate;
         }
 
-        header h1,
-        header p {
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 850px;
+            overflow: hidden;
             position: relative;
             z-index: 1;
-            /* អក្សរនៅលើ មិន blur */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            animation: float 6s ease-in-out infinite;
         }
 
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
 
-        h1 {
-            font-size: 2.1rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        header {
+            position: relative;
+            padding: 35px 25px 30px;
+            text-align: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 215, 0, 0.2));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, 0.05), transparent 70%);
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%,
+            100% {
+                transform: translateX(-30%) rotate(0deg);
+            }
+            50% {
+                transform: translateX(30%) rotate(5deg);
+            }
+        }
+
+        header h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b, #ffd700);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 20px rgba(255, 215, 0, 0.3));
+        }
+
+        @keyframes gradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        header h1:last-of-type {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .subtitle i {
+            color: #ffd700;
+            margin: 0 5px;
         }
 
         .main-content {
             padding: 30px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
-        }
-
-        /* លុប Input Section ព្រោះយើងលែងប្រើវា */
-        .input-section {
-            display: none;
+            gap: 25px;
         }
 
         .result-section {
-            background-color: #ffffff;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgb(198, 244, 255);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         h2 {
-            color: #43a0a5;
+            color: #ffd700;
             margin-bottom: 20px;
             font-size: 1.8rem;
-            border-bottom: 2px solid #2247af;
-            padding-bottom: 10px;
+            text-align: center;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
         }
 
         .birthday-message {
             text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, #ffebee, #fce4ec);
-            border: 3px dashed #bb5308;
-            /* កំណត់ឱ្យបង្ហាញភ្លាមៗ */
-            display: block;
-            transform: scale(1);
-            animation: bounceIn 0.8s ease-out;
+            padding: 30px 20px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(255, 215, 0, 0.10));
+            border: 2px solid rgba(255, 215, 0, 0.15);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+            }
         }
 
         .birthday-text {
-            font-size: 2rem;
-            color: #3823b1;
-            margin-bottom: 20px;
-            line-height: 1.4;
-            animation: textPulse 2s infinite;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            }
+            100% {
+                text-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 107, 107, 0.2);
+            }
+        }
+
+        .birthday-text .highlight {
+            color: #ffd700;
+            font-size: 2.2rem;
         }
 
         .cake {
-            font-size: 4rem;
-            margin: 20px 0;
-            animation: bounce 2s infinite, rotate 3s infinite;
+            font-size: 5rem;
+            margin: 15px 0;
+            animation: cakeBounce 2s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(0 10px 30px rgba(255, 215, 0, 0.3));
+        }
+
+        @keyframes cakeBounce {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+            }
         }
 
         .countdown {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
 
         .countdown-item {
-            background-color: #e91e8a;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 80px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            padding: 18px 22px;
+            border-radius: 15px;
+            min-width: 85px;
             text-align: center;
-            animation: pulse 2s infinite;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            animation: countdownPulse 2s ease-in-out infinite;
+        }
+
+        .countdown-item:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        .countdown-item:nth-child(3) {
+            animation-delay: 1s;
+        }
+        .countdown-item:nth-child(4) {
+            animation-delay: 1.5s;
+        }
+
+        @keyframes countdownPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                border-color: rgba(255, 215, 0, 0.1);
+            }
+            50% {
+                transform: scale(1.03);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
         }
 
         .countdown-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            line-height: 1.2;
         }
 
         .countdown-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 5px;
+            letter-spacing: 1px;
         }
 
-        .confetti {
-            position: fixed;
-            width: 15px;
-            height: 15px;
-            background-color: #f0f;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 1000;
+        /* Gift Box Styles - Enhanced */
+        .gift-section {
+            margin: 15px auto 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* Gift box styles */
-        .gift-box {
-            margin: 18px auto 6px;
-            width: 220px;
-            height: 140px;
-            position: relative;
-            perspective: 600px;
+        .gift-box-wrapper {
+            perspective: 800px;
             cursor: pointer;
             transition: transform 0.3s ease;
+        }
+
+        .gift-box-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .gift-box {
+            width: 200px;
+            height: 170px;
+            position: relative;
+            margin: 0 auto;
         }
 
         .gift-body {
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, #ff5f6d, #ffc371);
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #ff5f6d, #ffc371);
+            border-radius: 15px 15px 25px 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), inset 0 -5px 0 rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #fff;
             transform-origin: top center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-body::after {
+            content: '🎁';
+            font-size: 4rem;
+            opacity: 0.1;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            transform: rotate(15deg);
         }
 
         .gift-lid {
             position: absolute;
             top: -12px;
-            left: 10px;
-            right: 10px;
-            height: 40px;
-            background: linear-gradient(180deg, #ff9a9e, #f6c3a6);
-            border-radius: 8px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+            left: -8px;
+            right: -8px;
+            height: 45px;
+            background: linear-gradient(145deg, #ff9a9e, #f6c3a6);
+            border-radius: 15px 15px 5px 5px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transform-origin: center bottom;
-            transition: transform 0.6s cubic-bezier(.2, .8, .2, 1);
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .gift-lid::before {
+            content: '🎀';
+            font-size: 2.5rem;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
         }
 
         .gift-open .gift-lid {
-            transform: translateY(-70px) rotateX(50deg);
-            opacity: 0.95;
+            transform: translateY(-85px) rotateX(60deg) scale(0.9);
+            opacity: 0.9;
         }
 
-        .gift-amount {
+        .gift-ribbon {
             position: absolute;
-            top: 40px;
+            top: 0;
+            left: 50%;
+            width: 12px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffd700, #ff6b6b);
+            transform: translateX(-50%);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .gift-ribbon-horizontal {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, #ffd700, #ff6b6b);
+            transform: translateY(-50%);
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .gift-sparkles {
+            position: absolute;
+            top: 0;
             left: 0;
             right: 0;
-            text-align: center;
-            font-size: 1.6rem;
-            color: #112;
-            font-weight: 700;
-            opacity: 0;
-            transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
-            transform: translateY(-10px);
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
 
-            /* Hide the numeric amount on the box itself (we only show in the result area) */
-            .gift-amount {
-                display: none;
+        .sparkle {
+            position: absolute;
+            font-size: 1rem;
+            animation: sparkleFloat 3s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        .sparkle:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 0.8s;
+        }
+        .sparkle:nth-child(3) {
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 1.6s;
+        }
+        .sparkle:nth-child(4) {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 2.4s;
+        }
+
+        @keyframes sparkleFloat {
+            0%,
+            100% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0.3;
             }
-
-            /* Green amount styling for the compact result */
-            #giftResultAmount {
-                color: #00a403;
-                font-weight: 800;
-                font-size: 1.05rem;
+            50% {
+                transform: translateY(-15px) scale(1.2);
+                opacity: 1;
             }
-
-            z-index: 6;
         }
 
-        .gift-open .gift-amount {
-            opacity: 1;
-            transform: translateY(0);
+        .gift-body .gift-label {
+            position: relative;
+            z-index: 4;
+            font-size: 1rem;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.15);
+            padding: 8px 18px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .jumping-text {
-            display: inline-block;
-            animation: jump 0.5s ease infinite alternate;
-        }
-
-        footer {
+        .gift-result {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 107, 0.10));
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            animation: resultAppear 0.6s ease-out;
             text-align: center;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #666;
-            font-size: 0.9rem;
         }
 
-        /* Animations */
-        @keyframes bounceIn {
-
+        @keyframes resultAppear {
             0% {
-                transform: scale(0.3);
+                transform: scale(0.8) translateY(20px);
                 opacity: 0;
             }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
 
+        #giftResultAmount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        #giftSmallMsg {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .gift-controls {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gift-controls input {
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            width: 200px;
+            text-align: center;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .gift-controls input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .gift-controls input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .gift-controls button {
+            padding: 10px 30px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+        }
+
+        .gift-controls button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        #congratsText {
+            color: #ffd700;
+            font-size: 1.3rem;
+            font-weight: bold;
+            animation: congratsPop 0.6s ease-out;
+        }
+
+        @keyframes congratsPop {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
             100% {
                 transform: scale(1);
                 opacity: 1;
             }
         }
 
-        /* ... រក្សា Animation ផ្សេងទៀត... */
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-30px);
-            }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            letter-spacing: 1px;
         }
 
-        @keyframes rotate {
-
-            0%,
-            100% {
-                transform: rotate(0deg);
-            }
-
-            25% {
-                transform: rotate(5deg);
-            }
-
-            75% {
-                transform: rotate(-5deg);
-            }
+        /* Music Button */
+        #musicBtn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 1001;
+            padding: 12px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7);
-            }
-
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 0 10px rgba(233, 30, 99, 0);
-            }
+        #musicBtn:hover {
+            transform: scale(1.05);
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            box-shadow: 0 5px 30px rgba(255, 215, 0, 0.15);
         }
 
-        @keyframes textPulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 10px rgba(216, 27, 96, 0.3);
-            }
-
-            50% {
-                transform: scale(1.02);
-                text-shadow: 0 0 20px rgba(216, 27, 96, 0.6);
-            }
+        /* Confetti Styles */
+        .confetti {
+            position: fixed;
+            width: 12px;
+            height: 12px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            border-radius: 2px;
         }
 
-        @keyframes jump {
-            0% {
-                transform: translateY(0);
+        /* Responsive */
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 1.8rem;
             }
-
-            100% {
-                transform: translateY(-15px);
+            header h1:last-of-type {
+                font-size: 1.5rem;
             }
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-
             .main-content {
                 padding: 20px;
             }
-
             .birthday-text {
-                font-size: 1.5rem;
+                font-size: 1.2rem;
             }
-
             .cake {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
-
-            .countdown {
-                gap: 10px;
-            }
-
             .countdown-item {
-                min-width: 70px;
-                padding: 10px;
+                min-width: 65px;
+                padding: 12px 15px;
             }
-
             .countdown-number {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+            }
+            .gift-box {
+                width: 160px;
+                height: 140px;
+            }
+            .gift-body {
+                font-size: 1rem;
+            }
+            .gift-lid {
+                height: 38px;
+                top: -10px;
+            }
+            .gift-lid::before {
+                font-size: 2rem;
+                top: -12px;
+            }
+            #musicBtn {
+                right: 15px;
+                bottom: 15px;
+                padding: 10px 14px;
+                font-size: 0.8rem;
+            }
+            .gift-controls input {
+                width: 160px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 25px 15px 20px;
+            }
+            header h1 {
+                font-size: 1.4rem;
+            }
+            header h1:last-of-type {
+                font-size: 1.2rem;
+            }
+            .subtitle {
+                font-size: 0.85rem;
+            }
+            .birthday-text {
+                font-size: 1rem;
+            }
+            .countdown-item {
+                min-width: 55px;
+                padding: 10px 12px;
+            }
+            .countdown-number {
+                font-size: 1.4rem;
+            }
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+            .gift-box {
+                width: 130px;
+                height: 115px;
+            }
+            .gift-body {
+                font-size: 0.85rem;
+                border-radius: 12px;
+            }
+            .gift-lid {
+                height: 32px;
+                top: -8px;
+                border-radius: 12px 12px 4px 4px;
+            }
+            .gift-lid::before {
+                font-size: 1.6rem;
+                top: -10px;
+            }
+            .gift-ribbon {
+                width: 8px;
+            }
+            .gift-ribbon-horizontal {
+                height: 8px;
+            }
+            #giftResultAmount {
+                font-size: 1.3rem;
             }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
         <header>
-            <h1>រីករាយថ្ងៃកំណើត </h1>
+            <h1>🎉 រីករាយថ្ងៃកំណើត 🎉</h1>
             <h1>ស៊ុយ សេរីកាន់ន្និកា</h1>
-            <div class="subtitle">ការរាប់ថយក្រោយសម្រាប់ថ្ងៃទី 17 ខែធ្នូ ឆ្នាំ 2025</div>
+            <div class="subtitle">
+                <i class="fas fa-star"></i>
+                ការរាប់ថយក្រោយសម្រាប់ថ្ងៃទី 17 ខែធ្នូ ឆ្នាំ 2025
+                <i class="fas fa-star"></i>
+            </div>
         </header>
 
         <div class="main-content">
-            <section class="input-section"></section>
-
             <section class="result-section">
-                <h2>ការរាប់ថយក្រោយ</h2>
+                <h2>⏳ ការរាប់ថយក្រោយ</h2>
                 <div class="birthday-message" id="birthdayMessage">
                     <div class="cake">🎂</div>
 
-                    <!-- Gift box: click to open on birthday -->
-                    <div class="gift-box" id="giftBox" title="ចុចដើម្បីបើកអំណោយ">
-                        <div class="gift-lid"></div>
-                        <div class="gift-body">អំណោយរបស់អ្នក</div>
-                        <div class="gift-amount" id="giftAmount"></div>
-                    </div>
-                    <div id="giftResult" class="gift-result" style="display:none">
-                        <div id="giftResultAmount"> </div>
-                        <div id="giftSmallMsg" class="gift-message-small"></div>
-                    </div>
-                    <div id="giftControls" style="display:none; text-align:center; margin-top:8px;">
-                        <input id="giftPassword" placeholder="បញ្ចូលពាក្យសម្ងាត់"
-                            style="padding:6px 8px; border-radius:6px; border:1px solid #ccc; width:140px; margin-right:8px;">
-                        <button id="giftUnlockBtn"
-                            style="padding:6px 10px; border-radius:6px; border:0; background:#43a0a5; color:#fff; cursor:pointer;">បើក</button>
-                        <div id="congratsText" style="display:none; margin-top:8px; font-weight:700; color:#1b7;">
-                            សូមអបអរសាទរ!</div>
+                    <div class="gift-section">
+                        <div class="gift-box-wrapper" id="giftBoxWrapper" title="ចុចដើម្បីបើកអំណោយ">
+                            <div class="gift-box" id="giftBox">
+                                <div class="gift-lid"></div>
+                                <div class="gift-body">
+                                    <div class="gift-ribbon"></div>
+                                    <div class="gift-ribbon-horizontal"></div>
+                                    <div class="gift-sparkles">
+                                        <span class="sparkle">✨</span>
+                                        <span class="sparkle">⭐</span>
+                                        <span class="sparkle">✨</span>
+                                        <span class="sparkle">🌟</span>
+                                    </div>
+                                    <span class="gift-label">🎁 អំណោយរបស់អ្នក</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="giftResult" class="gift-result" style="display:none;">
+                            <div id="giftResultAmount"></div>
+                            <div id="giftSmallMsg"></div>
+                        </div>
+
+                        <div class="gift-controls" id="giftControls" style="display:none;">
+                            <input id="giftPassword" type="password" placeholder="🔑 បញ្ចូលពាក្យសម្ងាត់" maxlength="30">
+                            <button id="giftUnlockBtn"><i class="fas fa-unlock"></i> បើកអំណោយ</button>
+                            <div id="congratsText" style="display:none;">
+                                <i class="fas fa-gift"></i> សូមអបអរសាទរ! 🎉
+                            </div>
+                        </div>
                     </div>
 
                     <div class="birthday-text" id="birthdayText">កំពុងគណនាថ្ងៃកំណើត...</div>
+
                     <div class="countdown" id="countdown">
                         <div class="countdown-item">
-                            <div class="countdown-number" id="days">0</div>
+                            <span class="countdown-number" id="days">0</span>
                             <div class="countdown-label">ថ្ងៃ</div>
                         </div>
                         <div class="countdown-item">
-                            <div class="countdown-number" id="hours">0</div>
+                            <span class="countdown-number" id="hours">0</span>
                             <div class="countdown-label">ម៉ោង</div>
                         </div>
                         <div class="countdown-item">
-                            <div class="countdown-number" id="minutes">0</div>
+                            <span class="countdown-number" id="minutes">0</span>
                             <div class="countdown-label">នាទី</div>
                         </div>
                         <div class="countdown-item">
-                            <div class="countdown-number" id="seconds">0</div>
+                            <span class="countdown-number" id="seconds">0</span>
                             <div class="countdown-label">វិនាទី</div>
                         </div>
                     </div>
                 </div>
-
-                <div id="normalMessage" style="display: none;"></div>
             </section>
         </div>
 
         <footer>
-            <p>© 2026 គេហទំព័រថ្ងៃកំណើតសម្រាប់តែពន្ធតែប៉ុណ្ណោះ Kannyka</p>
+            <p>© 2026 គេហទំព័រថ្ងៃកំណើតសម្រាប់តែពន្ធតែប៉ុណ្ណោះ Kannyka 💛</p>
         </footer>
     </div>
 
+    <button id="musicBtn"><i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span></button>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // លុបធាតុបញ្ចូលដែលមិនចាំបាច់ចេញពី DOM
-            const birthdayMessage = document.getElementById('birthdayMessage');
+        document.addEventListener('DOMContentLoaded', function() {
+            // ===== CONFIGURATION =====
+            const TARGET_BIRTHDAY_MONTH = 11; // December (0-indexed)
+            const TARGET_BIRTHDAY_DAY = 17;
+            const TARGET_BIRTHDAY_YEAR = 2025;
+            const BIRTH_YEAR = 2004;
+            const GIFT_PASSWORD = 'អូនជាពន្លឺនៃបង';
+
+            // ===== DOM REFERENCES =====
             const birthdayText = document.getElementById('birthdayText');
             const countdown = document.getElementById('countdown');
             const daysEl = document.getElementById('days');
             const hoursEl = document.getElementById('hours');
             const minutesEl = document.getElementById('minutes');
             const secondsEl = document.getElementById('seconds');
+            const giftBox = document.getElementById('giftBox');
+            const giftBoxWrapper = document.getElementById('giftBoxWrapper');
+            const giftControls = document.getElementById('giftControls');
+            const giftPassword = document.getElementById('giftPassword');
+            const giftUnlockBtn = document.getElementById('giftUnlockBtn');
+            const giftResult = document.getElementById('giftResult');
+            const giftResultAmount = document.getElementById('giftResultAmount');
+            const giftSmallMsg = document.getElementById('giftSmallMsg');
+            const congratsText = document.getElementById('congratsText');
+            const musicBtn = document.getElementById('musicBtn');
+            const musicLabel = document.getElementById('musicLabel');
 
-            // កំណត់ថ្ងៃកំណើតគោលដៅ និងថ្ងៃកំណើតដើមសម្រាប់ការគណនាអាយុ
-            const TARGET_BIRTHDAY_MONTH = 11; // 11 សម្រាប់ខែធ្នូ (ចាប់ពី 0)
-            const TARGET_BIRTHDAY_DAY = 17;
-            const TARGET_BIRTHDAY_YEAR = 2025;
-            const BIRTH_YEAR = 2004; // ប្រើឆ្នាំកំណើតពិតប្រាកដសម្រាប់គណនាអាយុ
-
-            // ហៅមុខងារគណនាភ្លាមៗ
-            startCountdown();
-
+            // ===== COUNTDOWN LOGIC =====
             function startCountdown() {
-                // កំណត់គោលដៅថ្ងៃកំណើតបន្ទាប់ (17/12/2025)
                 const nextBirthdayDate = new Date(TARGET_BIRTHDAY_YEAR, TARGET_BIRTHDAY_MONTH, TARGET_BIRTHDAY_DAY);
                 const today = new Date();
 
@@ -474,84 +856,79 @@
                     today.getFullYear() === TARGET_BIRTHDAY_YEAR;
 
                 if (today.getTime() > nextBirthdayDate.getTime() && !isTargetBirthdayToday) {
-                    // ប្រសិនបើថ្ងៃកំណើតឆ្នាំ 2025 បានកន្លងផុតហើយ
-                    birthdayText.innerHTML = `ថ្ងៃកំណើត ${TARGET_BIRTHDAY_DAY}/${TARGET_BIRTHDAY_MONTH + 1}/${TARGET_BIRTHDAY_YEAR} បានកន្លងផុតហើយ។`;
+                    birthdayText.innerHTML = `
+                        <span style="color: #ff6b6b;">ថ្ងៃកំណើត ${TARGET_BIRTHDAY_DAY}/${TARGET_BIRTHDAY_MONTH + 1}/${TARGET_BIRTHDAY_YEAR} បានកន្លងផុតហើយ</span>
+                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.5);">សូមរង់ចាំថ្ងៃកំណើតឆ្នាំក្រោយ</span>
+                    `;
                     countdown.style.display = 'none';
                     if (window.birthdayCountdownInterval) {
                         clearInterval(window.birthdayCountdownInterval);
                     }
                 } else if (isTargetBirthdayToday) {
-                    // លក្ខខណ្ឌថ្ងៃកំណើតពិសេស (17/12/2025)
                     const age = today.getFullYear() - BIRTH_YEAR;
                     birthdayText.innerHTML = `
-						<span class="jumping-text">រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 17/ December /2025</span><br>
-						សូមឲ្យអូនមានកម្លាំងក្នុងចិត្ត សុខភាពល្អ និងមនុស្សល្អៗនៅជុំវិញ🎉<br>
-						អ្វីដែលធ្លាប់ឈឺ សូមឲ្យវាស្ងប់<br><br>
-						<span class="jumping-text">ឲ្យអូនរស់នៅក្នុងឆ្នាំថ្មីខាងមុខនេះចាប់ពីរនេះតទៅដោយចិត្តដូចទឹក ស្ងប់</span><br>
-						ស្រាល និងច្បាស់ ហើយគ្រប់ជំហាននឹងនាំអូនទៅកាន់អ្វីល្អជាងមុន សូមឪ្យគ្រប់ជំហ៊ានរបស់អូននិងនាំទៅរកអ្វីដែលប្រសើជាងមុននៃជីវិតមួយនេះ!
-					`;
+                        <span class="highlight">🎊 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🎊</span>
+                        <br><span style="font-size:1.2rem;color:#ffd700;">17 ធ្នូ 2025</span>
+                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.8);display:block;margin-top:10px;">
+                            <i class="fas fa-heart" style="color:#ff6b6b;"></i>
+                            សូមឲ្យអូនមានកម្លាំងក្នុងចិត្ត សុខភាពល្អ និងមនុស្សល្អៗនៅជុំវិញ
+                            <i class="fas fa-heart" style="color:#ff6b6b;"></i>
+                        </span>
+                        <br><span style="font-size:0.95rem;color:rgba(255,255,255,0.6);">
+                            <i class="fas fa-star" style="color:#ffd700;"></i>
+                            អ្វីដែលធ្លាប់ឈឺ សូមឲ្យវាស្ងប់
+                            <i class="fas fa-star" style="color:#ffd700;"></i>
+                        </span>
+                        <br><br><span style="font-size:1rem;color:rgba(255,255,255,0.7);font-style:italic;">
+                            "ឲ្យអូនរស់នៅក្នុងឆ្នាំថ្មីដោយចិត្តដូចទឹក ស្ងប់ ស្រាល និងច្បាស់"
+                        </span>
+                        <br><span style="font-size:0.9rem;color:rgba(255,255,255,0.5);margin-top:5px;display:block;">
+                            គ្រប់ជំហាននឹងនាំអូនទៅកាន់អ្វីល្អជាងមុន 🌟
+                        </span>
+                    `;
                     countdown.style.display = 'none';
-                    createConfetti();
-                    // កុំបើកអំណោយដោយស្វ័យប្រវត្តិ — ទាក់ទាញឲ្យបញ្ចូលពាក្យសម្ងាត់
-                    const giftControls = document.getElementById('giftControls');
-                    const giftPassword = document.getElementById('giftPassword');
-                    const giftResult = document.getElementById('giftResult');
-                    const giftSmallMsg = document.getElementById('giftSmallMsg');
-                    if (giftControls) {
-                        giftControls.style.display = 'block';
-                        if (giftPassword) giftPassword.focus();
-                    }
-                    if (giftResult && giftSmallMsg) {
-                        giftSmallMsg.textContent = 'សូមបញ្ចូលពាក្យសម្ងាត់ ដើម្បីបើកអំណោយ';
-                        giftResult.style.display = 'inline-block';
-                        setTimeout(() => { giftResult.style.display = 'none'; giftSmallMsg.textContent = ''; }, 3200);
-                    }
-
+                    createConfetti(200);
+                    // Show gift controls for password entry
+                    giftControls.style.display = 'flex';
+                    if (giftPassword) giftPassword.focus();
                     if (window.birthdayCountdownInterval) {
                         clearInterval(window.birthdayCountdownInterval);
                     }
                 } else {
-                    // ការរាប់ថយក្រោយ
-                    const daysUntilBirthday = calculateDaysUntil(nextBirthdayDate);
-
+                    const daysUntil = calculateDaysUntil(nextBirthdayDate);
                     birthdayText.innerHTML = `
-						ថ្ងៃកំណើតរបស់អូនគឺនៅ ${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}<br>
-						នឹងមកដល់ក្នុងរយៈពេល <span class="jumping-text">ប៉ុន្មាន</span> ម៉ោងទៀតប៉ុណ្ណោះ!
-					`;
-
+                        <span style="color:#ffd700;">ថ្ងៃកំណើតរបស់អូន</span>
+                        <br><span style="font-size:1.2rem;color:#fff;">${nextBirthdayDate.toLocaleDateString('km-KH', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                        <br><span style="font-size:1rem;color:rgba(255,255,255,0.5);">
+                            <i class="fas fa-hourglass-half"></i> នឹងមកដល់ក្នុងរយៈពេល
+                        </span>
+                    `;
                     countdown.style.display = 'flex';
-
-                    // ចាប់ផ្ដើមការរាប់ថយក្រោយ
                     updateCountdown(nextBirthdayDate);
                     const countdownInterval = setInterval(() => updateCountdown(nextBirthdayDate), 1000);
                     window.birthdayCountdownInterval = countdownInterval;
-
                     createMiniConfetti();
                 }
             }
 
-            // មុខងារគណនាថ្ងៃដែលនៅសល់ (ដូចដើម)
             function calculateDaysUntil(nextBirthday) {
                 const today = new Date();
                 const timeDiff = nextBirthday.getTime() - today.getTime();
                 return Math.ceil(timeDiff / (1000 * 3600 * 24));
             }
 
-            // មុខងារបន្ទាប់គ្នារាប់ថយក្រោយ (ដូចដើម)
             function updateCountdown(nextBirthday) {
                 const now = new Date().getTime();
                 const timeRemaining = nextBirthday.getTime() - now;
 
                 if (timeRemaining < 0) {
                     daysEl.textContent = '0';
-                    hoursEl.textContent = '0';
-                    minutesEl.textContent = '0';
-                    secondsEl.textContent = '0';
-
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
                     if (window.birthdayCountdownInterval) {
                         clearInterval(window.birthdayCountdownInterval);
                     }
-                    // ហៅ startCountdown ម្តងទៀតដើម្បីបង្ហាញសារថ្ងៃកំណើតពិសេស
                     startCountdown();
                     return;
                 }
@@ -562,53 +939,56 @@
                 const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
                 daysEl.textContent = days;
-                hoursEl.textContent = hours;
-                hoursEl.textContent = hours.toString().padStart(2, '0'); // បន្ថែម 0 ខាងមុខ
-                minutesEl.textContent = minutes.toString().padStart(2, '0'); // បន្ថែម 0 ខាងមុខ
-                secondsEl.textContent = seconds.toString().padStart(2, '0'); // បន្ថែម 0 ខាងមុខ
+                hoursEl.textContent = hours.toString().padStart(2, '0');
+                minutesEl.textContent = minutes.toString().padStart(2, '0');
+                secondsEl.textContent = seconds.toString().padStart(2, '0');
             }
 
-            // មុខងារ Confetti និង Mini Confetti (ដូចដើម)
-            function createConfetti() {
-                const colors = ['#e91e63', '#9c27b0', '#2196f3', '#4caf50', '#ffeb3b', '#ff9800'];
-                for (let i = 0; i < 200; i++) {
+            // ===== CONFETTI =====
+            function createConfetti(count = 200) {
+                const colors = ['#ffd700', '#ff6b6b', '#ff9a9e', '#fbc2eb', '#a18cd1', '#fad0c4', '#ffecd2', '#a8edea'];
+                for (let i = 0; i < count; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + 'vw';
                     confetti.style.top = '-20px';
                     confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.width = Math.random() * 20 + 5 + 'px';
-                    confetti.style.height = Math.random() * 20 + 5 + 'px';
-                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    const size = Math.random() * 15 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
                     document.body.appendChild(confetti);
                     animateConfetti(confetti);
                 }
             }
 
             function createMiniConfetti() {
-                const colors = ['#e91e63', '#9c27b0'];
-                for (let i = 0; i < 50; i++) {
+                const colors = ['#ffd700', '#ff6b6b', '#ff9a9e'];
+                for (let i = 0; i < 40; i++) {
                     const confetti = document.createElement('div');
                     confetti.className = 'confetti';
                     confetti.style.left = Math.random() * 100 + 'vw';
                     confetti.style.top = '-10px';
                     confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.width = Math.random() * 10 + 3 + 'px';
-                    confetti.style.height = Math.random() * 10 + 3 + 'px';
-                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    const size = Math.random() * 8 + 3;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
                     document.body.appendChild(confetti);
                     animateConfetti(confetti, 1.5);
                 }
             }
 
             function animateConfetti(confetti, durationMultiplier = 1) {
-                const animationDuration = Math.random() * 2 * durationMultiplier + 1;
-                const horizontalMovement = Math.random() * 300 - 150;
+                const duration = (Math.random() * 2 + 1.5) * durationMultiplier;
+                const horizontal = Math.random() * 400 - 200;
                 confetti.style.opacity = '1';
-                confetti.style.transition = `all ${animationDuration}s cubic-bezier(0.1, 0.8, 0.2, 1)`;
+                confetti.style.transition = `all ${duration}s cubic-bezier(0.1, 0.8, 0.2, 1)`;
 
                 setTimeout(() => {
-                    confetti.style.transform = `translate(${horizontalMovement}px, 100vh) rotate(${Math.random() * 720}deg)`;
+                    confetti.style.transform =
+                        `translate(${horizontal}px, ${window.innerHeight + 50}px) rotate(${Math.random() * 720}deg)`;
                     confetti.style.opacity = '0';
                 }, 10);
 
@@ -616,91 +996,72 @@
                     if (confetti.parentNode) {
                         confetti.parentNode.removeChild(confetti);
                     }
-                }, animationDuration * 1000);
+                }, duration * 1000 + 100);
             }
 
-            // Gift reveal: show fixed ១០០០០រៀល and animate box
+            // ===== GIFT LOGIC =====
             function revealGift() {
-                const giftBox = document.getElementById('giftBox');
-                const giftAmountEl = document.getElementById('giftAmount');
-                if (!giftBox || !giftAmountEl) return;
-
-                // fixed amount in Khmer Riel — only show in the compact result area
                 const amountText = '១០០០០៛';
-                // ensure box itself doesn't display the number
-                giftAmountEl.textContent = '';
-
-                // animate open and create confetti
                 giftBox.classList.add('gift-open');
-                createConfetti();
+                createConfetti(150);
 
-                // play background music if available
-                const bg = document.getElementById('bgMusic');
-                if (bg && bg.paused) {
-                    try { bg.play(); } catch (e) { /* ignore */ }
+                // Show result
+                giftResult.style.display = 'block';
+                giftResultAmount.textContent = `🎁 អ្នកទទួលបាន ${amountText}`;
+                giftSmallMsg.textContent = 'សូមរីករាយជាមួយអំណោយនេះ! 💛';
+
+                // Play music if available
+                const audio = document.getElementById('bgAudio');
+                if (audio && audio.paused) {
+                    try { audio.play(); } catch (e) { /* ignore */ }
                 }
 
-                // small pop effect on the amount
-                setTimeout(() => {
-                    giftAmountEl.style.transform = 'scale(1.05)';
-                    setTimeout(() => giftAmountEl.style.transform = '', 300);
-                }, 120);
-                // show compact result below gift box
-                const giftResult = document.getElementById('giftResult');
-                const giftResultAmount = document.getElementById('giftResultAmount');
-                const giftSmallMsg = document.getElementById('giftSmallMsg');
-                if (giftResult && giftResultAmount && giftSmallMsg) {
-                    giftResultAmount.textContent = `អ្នកទទួលបានការដូរ ${amountText}`;
-                    giftSmallMsg.textContent = 'សូមរីករាយជាមួយអំណោយនេះ!';
-                    giftResult.style.display = 'inline-block';
+                // Update music button
+                if (musicLabel) {
+                    musicLabel.textContent = 'កំពុងចាក់';
+                    musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">កំពុងចាក់</span>';
                 }
             }
-
-            // Click handler: only reveal on the target day (day 17, given TARGET constants)
-            const giftBoxEl = document.getElementById('giftBox');
-            const giftUnlockBtn = document.getElementById('giftUnlockBtn');
-            const giftPasswordEl = document.getElementById('giftPassword');
 
             function tryUnlockFromInteraction(showNotYetMessage = true) {
                 const now = new Date();
-                const isTodayTarget = now.getDate() === TARGET_BIRTHDAY_DAY && now.getMonth() === TARGET_BIRTHDAY_MONTH;
-                const giftResult = document.getElementById('giftResult');
-                const giftSmallMsg = document.getElementById('giftSmallMsg');
+                const isTodayTarget = now.getDate() === TARGET_BIRTHDAY_DAY &&
+                    now.getMonth() === TARGET_BIRTHDAY_MONTH;
 
                 if (!isTodayTarget) {
-                    if (showNotYetMessage && giftResult && giftSmallMsg) {
-                        giftSmallMsg.textContent = 'មិនទាន់ដល់ថ្ងៃទី 17 ទេ — សូមរង់ចាំ';
-                        giftResult.style.display = 'inline-block';
-                        setTimeout(() => { giftResult.style.display = 'none'; giftSmallMsg.textContent = ''; }, 1800);
+                    if (showNotYetMessage) {
+                        giftResult.style.display = 'block';
+                        giftResultAmount.textContent = '⏳ មិនទាន់ដល់ថ្ងៃទី 17 ទេ';
+                        giftSmallMsg.textContent = 'សូមរង់ចាំថ្ងៃកំណើតរបស់អូន';
+                        setTimeout(() => {
+                            giftResult.style.display = 'none';
+                        }, 2500);
                     }
                     return;
                 }
 
-                // require password '2026'
-                const pw = giftPasswordEl ? giftPasswordEl.value.trim() : '';
-                if (pw === 'អូនជាពន្លឺនៃបង') {
+                const pw = giftPassword ? giftPassword.value.trim() : '';
+                if (pw === GIFT_PASSWORD) {
                     revealGift();
-                    const congrats = document.getElementById('congratsText');
-                    if (congrats) {
-                        congrats.style.display = 'block';
-                        setTimeout(() => congrats.style.display = 'none', 5000);
-                    }
+                    congratsText.style.display = 'block';
+                    giftPassword.value = '';
+                    setTimeout(() => congratsText.style.display = 'none', 5000);
                 } else {
-                    if (giftResult && giftSmallMsg) {
-                        giftSmallMsg.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ សូមព្យាយាមម្តងទៀត';
-                        giftResult.style.display = 'inline-block';
-                        setTimeout(() => { giftResult.style.display = 'none'; giftSmallMsg.textContent = ''; }, 2200);
-                    }
+                    giftResult.style.display = 'block';
+                    giftResultAmount.textContent = '❌ ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
+                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត';
+                    setTimeout(() => {
+                        giftResult.style.display = 'none';
+                    }, 2200);
                 }
             }
 
-            if (giftBoxEl) {
-                giftBoxEl.addEventListener('click', () => {
-                    const giftControls = document.getElementById('giftControls');
-                    if (giftControls && giftControls.style.display === 'none') {
-                        giftControls.style.display = 'block';
-                        const pw = document.getElementById('giftPassword');
-                        if (pw) pw.focus();
+            // ===== EVENT LISTENERS =====
+            if (giftBoxWrapper) {
+                giftBoxWrapper.addEventListener('click', () => {
+                    if (giftControls.style.display === 'none') {
+                        giftControls.style.display = 'flex';
+                        if (giftPassword) giftPassword.focus();
                         return;
                     }
                     tryUnlockFromInteraction(true);
@@ -710,78 +1071,52 @@
             if (giftUnlockBtn) {
                 giftUnlockBtn.addEventListener('click', () => tryUnlockFromInteraction(false));
             }
-            // ... (រក្សាកូដ Confetti ទាំងអស់)
 
-            // =======================================================
-            // 🎧 កូដ Background Music ដែលបានកែតម្រូវ
-            // =======================================================
-
-            // 1. បង្កើត Audio Element និងប៊ូតុង
-            const bgMusic = document.createElement('audio');
-            bgMusic.id = 'bgMusic';
-            bgMusic.src = 'music/Happy.mp3'; // ត្រូវប្រាកដថា Path នេះត្រឹមត្រូវ!
-            bgMusic.loop = true;
-            bgMusic.preload = 'auto'; // អាច preload ដើម្បីជួយល្បឿន
-            document.body.appendChild(bgMusic);
-
-            const musicBtn = document.createElement('button');
-            musicBtn.id = 'musicBtn';
-            musicBtn.setAttribute('aria-label', 'Play or pause background music');
-            musicBtn.innerHTML = '🔈 ចាក់ភ្លេង'; // លំនាំដើម (Default) គឺ Paused
-
-            // កូដ CSS សម្រាប់ប៊ូតុង (រក្សាទុក)
-            musicBtn.style.position = 'fixed';
-            musicBtn.style.right = '20px';
-            musicBtn.style.bottom = '20px';
-            musicBtn.style.zIndex = '1001';
-            musicBtn.style.padding = '10px 14px';
-            musicBtn.style.borderRadius = '8px';
-            musicBtn.style.background = '#ffffff';
-            musicBtn.style.border = '1px solid #ccc';
-            musicBtn.style.cursor = 'pointer';
-            musicBtn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.08)';
-            document.body.appendChild(musicBtn);
-
-            // 2. មុខងារសម្រាប់ចាប់ផ្តើម/ផ្អាក
-            function toggleMusic() {
-                // ដំបូងត្រូវលុប mute ចោលសិន មុនពេលព្យាយាម Play
-                bgMusic.muted = false;
-
-                if (bgMusic.paused) {
-                    // ព្យាយាម Play
-                    bgMusic.play().then(() => {
-                        musicBtn.innerHTML = '🔊 បិទភ្លេង';
-                    }).catch(e => {
-                        // ក្នុងករណី Play បរាជ័យទៀត
-                        console.warn('Playback failed (after click):', e);
-                        musicBtn.innerHTML = '🔈 ចាក់ភ្លេង (មានបញ្ហា)';
-                    });
-                } else {
-                    // Pause
-                    bgMusic.pause();
-                    musicBtn.innerHTML = '🔈 ចាក់ភ្លេង';
-                }
+            if (giftPassword) {
+                giftPassword.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        tryUnlockFromInteraction(false);
+                    }
+                });
             }
 
-            // 3. Event Listener សម្រាប់ Play/Pause (ប្រើតែមួយ Click)
-            musicBtn.addEventListener('click', toggleMusic);
+            // ===== BACKGROUND MUSIC =====
+            const bgAudio = document.createElement('audio');
+            bgAudio.id = 'bgAudio';
+            bgAudio.src = 'music/Happy.mp3';
+            bgAudio.loop = true;
+            bgAudio.preload = 'auto';
+            bgAudio.volume = 0.6;
+            document.body.appendChild(bgAudio);
 
-            // 4. ដោះស្រាយ Autoplay ពេលផ្ទុកដំបូង
-            // គោលការណ៍៖ ត្រូវតែរង់ចាំ User Click ជានិច្ច ដូច្នេះយើងមិនព្យាយាម Autoplay ទេ។
-            // យើងគ្រាន់តែទុកឲ្យប៊ូតុងបង្ហាញ "ចាក់ភ្លេង" ហើយរង់ចាំ User ចុចតែម្តងគត់
-            // បន្ទាត់កូដ Autoplay ចាស់ត្រូវបានលុបចោលដើម្បីធានាការអនុវត្តតាមគោលការណ៍ Browser
-            // =======================================================
-            // 🎧 បញ្ចប់កូដ Background Music
-            // =======================================================
+            let musicPlaying = false;
 
+            musicBtn.addEventListener('click', function() {
+                if (!musicPlaying) {
+                    bgAudio.play().then(() => {
+                        musicPlaying = true;
+                        musicBtn.innerHTML = '<i class="fas fa-volume-up"></i> <span id="musicLabel">បិទភ្លេង</span>';
+                    }).catch(() => {
+                        musicBtn.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span>';
+                    });
+                } else {
+                    bgAudio.pause();
+                    musicPlaying = false;
+                    musicBtn.innerHTML = '<i class="fas fa-music"></i> <span id="musicLabel">ចាក់ភ្លេង</span>';
+                }
+            });
+
+            // ===== INIT =====
+            startCountdown();
+
+            // Check if it's birthday and auto-show controls
+            const today = new Date();
+            if (today.getDate() === TARGET_BIRTHDAY_DAY &&
+                today.getMonth() === TARGET_BIRTHDAY_MONTH) {
+                giftControls.style.display = 'flex';
+            }
         });
     </script>
 </body>
 
 </html>
-
-
-
-
-
-

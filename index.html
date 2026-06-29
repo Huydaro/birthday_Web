@@ -2,65 +2,84 @@
 <html lang="km">
 <head>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #000; overflow: hidden; }
+        body, html { margin: 0; padding: 0; height: 100%; background: #02050A; overflow: hidden; }
 
-        /* ផ្ទៃមេឃ និងពពកអវកាស (Nebula) */
-        .universe {
+        /* បង្កើត Nebula ដ៏ស្រស់ស្អាត */
+        .nebula {
             position: absolute; width: 100%; height: 100%;
-            background: radial-gradient(circle at 20% 30%, #4a00e0, transparent 40%),
-                        radial-gradient(circle at 80% 70%, #ff0055, transparent 40%),
-                        radial-gradient(circle at 50% 50%, #00d4ff, transparent 30%);
-            animation: rotateNebula 60s linear infinite;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(74, 0, 224, 0.4), transparent 30%),
+                radial-gradient(circle at 85% 30%, rgba(255, 0, 85, 0.4), transparent 30%),
+                radial-gradient(circle at 50% 80%, rgba(0, 212, 255, 0.3), transparent 40%);
+            filter: blur(80px);
+            animation: drift 20s infinite alternate;
         }
 
-        @keyframes rotateNebula { 100% { transform: rotate(360deg); } }
-
-        /* ព្រះអាទិត្យ */
-        .sun {
-            position: absolute; top: -50px; right: -50px; width: 300px; height: 300px;
-            background: radial-gradient(circle, #fff7a0, #ff6600);
-            border-radius: 50%; box-shadow: 0 0 150px #ff6600;
+        @keyframes drift {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.2) translate(-5%, -5%); }
         }
 
-        /* យានអវកាស និងសាន់តា */
-        .ship-container {
-            position: absolute; top: 40%; left: -20%;
-            animation: flight 18s linear infinite;
+        /* ផ្កាយរាប់ពាន់ដែលភ្លឺចែងចាំង */
+        .starfield { position: absolute; width: 100%; height: 100%; z-index: 1; }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle 1.5s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        /* យានអវកាសបែប Futuristic */
+        .spaceship-container {
+            position: absolute; top: 30%; left: -200px;
+            z-index: 10;
+            filter: drop-shadow(0 0 30px #00d4ff);
+            animation: warp-speed 12s linear infinite;
         }
-        .ship { font-size: 80px; filter: drop-shadow(0 0 20px #00d4ff); }
         
-        @keyframes flight {
-            0% { transform: translateX(0) translateY(0); }
-            50% { transform: translateX(50vw) translateY(-100px); }
-            100% { transform: translateX(120vw) translateY(0); }
+        .spaceship-art { font-size: 100px; }
+
+        @keyframes warp-speed {
+            0% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(110vw) scale(1.2); }
+            100% { transform: translateX(110vw) scale(0.5); }
         }
 
-        /* ផ្កាព្រិលអវកាស */
-        .star {
-            position: absolute; background: white; border-radius: 50%;
-            animation: blink 2s infinite alternate;
+        /* ពន្លឺព្រះអាទិត្យ */
+        .sun {
+            position: absolute; top: -100px; right: -100px;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, #ffcc00, #ff6600, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 200px #ff6600;
+            z-index: 0;
         }
-        @keyframes blink { from { opacity: 0.2; } to { opacity: 1; } }
+
+        .title {
+            position: absolute; bottom: 50px; width: 100%; text-align: center;
+            color: white; font-family: sans-serif; letter-spacing: 5px;
+            text-shadow: 0 0 20px #fff; z-index: 20;
+        }
     </style>
 </head>
 <body>
-    <div class="universe"></div>
+    <div class="nebula"></div>
     <div class="sun"></div>
-    <div class="ship-container">
-        <div class="ship">🚀🎅🛷🎁</div>
+    <div class="starfield" id="stars"></div>
+    
+    <div class="spaceship-container">
+        <div class="spaceship-art">🚀🎅✨</div>
     </div>
 
+    <div class="title">CHRISTMAS IN DEEP SPACE</div>
+
     <script>
-        // បង្កើតផ្កាយរាប់រយ
-        for(let i=0; i<200; i++) {
+        const starContainer = document.getElementById('stars');
+        for(let i=0; i<300; i++) {
             let s = document.createElement('div');
             s.className = 'star';
-            let size = Math.random() * 3 + 'px';
+            let size = Math.random() * 2 + 'px';
             s.style.width = s.style.height = size;
             s.style.left = Math.random() * 100 + 'vw';
             s.style.top = Math.random() * 100 + 'vh';
             s.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(s);
+            starContainer.appendChild(s);
         }
     </script>
 </body>

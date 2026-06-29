@@ -27,7 +27,6 @@
             position: relative;
         }
 
-        /* ===== SPACE BACKGROUND ===== */
         .space-bg {
             position: fixed;
             top: 0;
@@ -40,7 +39,6 @@
                 radial-gradient(ellipse at 80% 70%, rgba(255, 100, 50, 0.08), transparent 50%);
         }
 
-        /* Stars - Layer 1 */
         .stars-1 {
             position: absolute;
             width: 100%;
@@ -78,7 +76,6 @@
             }
         }
 
-        /* Stars - Layer 2 (bigger, slower) */
         .stars-2 {
             position: absolute;
             width: 100%;
@@ -97,7 +94,6 @@
             animation: twinkleStars 6s ease-in-out infinite alternate-reverse;
         }
 
-        /* ===== SUN ===== */
         .sun {
             position: fixed;
             top: 30px;
@@ -141,7 +137,6 @@
             }
         }
 
-        /* ===== GALAXY NEBULA ===== */
         .galaxy {
             position: fixed;
             top: 50%;
@@ -180,7 +175,6 @@
             }
         }
 
-        /* ===== SHOOTING STARS ===== */
         .shooting-star {
             position: fixed;
             width: 3px;
@@ -252,7 +246,6 @@
             animation-delay: 4s;
         }
 
-        /* ===== SPACESHIP ===== */
         .spaceship {
             position: fixed;
             z-index: 1;
@@ -294,7 +287,6 @@
             font-size: 2rem;
         }
 
-        /* ===== UFO ===== */
         .ufo {
             position: fixed;
             z-index: 1;
@@ -332,7 +324,6 @@
             font-size: 2rem;
         }
 
-        /* ===== ALIEN ===== */
         .alien {
             position: fixed;
             z-index: 1;
@@ -365,7 +356,6 @@
             }
         }
 
-        /* ===== CONTAINER ===== */
         .container {
             background: rgba(255, 255, 255, 0.06);
             backdrop-filter: blur(20px);
@@ -413,7 +403,6 @@
             }
         }
 
-        /* ===== HEADER ===== */
         header {
             position: relative;
             padding: 35px 25px 30px;
@@ -662,7 +651,6 @@
             }
         }
 
-        /* ===== COUNTDOWN ===== */
         .countdown {
             display: flex;
             justify-content: center;
@@ -756,7 +744,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== GIFT BOX ===== */
         .gift-section {
             margin: 15px auto 5px;
             display: flex;
@@ -1000,7 +987,6 @@
             }
         }
 
-        /* ===== GIFT RESULT ===== */
         .gift-result {
             margin-top: 20px;
             padding: 25px 30px;
@@ -1250,7 +1236,6 @@
             letter-spacing: 1px;
         }
 
-        /* ===== MUSIC BUTTON ===== */
         #musicBtn {
             position: fixed;
             right: 25px;
@@ -1303,7 +1288,6 @@
             border-radius: 2px;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 640px) {
             header h1 {
                 font-size: 2rem;
@@ -1466,39 +1450,30 @@
 </head>
 
 <body>
-    <!-- ===== SPACE BACKGROUND ===== -->
     <div class="space-bg">
         <div class="stars-1"></div>
         <div class="stars-2"></div>
     </div>
 
-    <!-- ===== SUN ===== -->
     <div class="sun"></div>
-
-    <!-- ===== GALAXY ===== -->
     <div class="galaxy"></div>
 
-    <!-- ===== SHOOTING STARS ===== -->
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
 
-    <!-- ===== SPACESHIPS ===== -->
     <div class="spaceship">🚀</div>
     <div class="spaceship">🛸</div>
     <div class="spaceship">🛰️</div>
 
-    <!-- ===== UFOs ===== -->
     <div class="ufo">🛸</div>
     <div class="ufo">👽</div>
 
-    <!-- ===== ALIENS ===== -->
     <div class="alien">👾</div>
     <div class="alien">👽</div>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <div class="container">
         <header>
             <h1>🎉 រីករាយថ្ងៃកំណើត 🎉</h1>
@@ -1587,14 +1562,12 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // ===== CONFIGURATION =====
             const TARGET_BIRTHDAY_MONTH = 11;
             const TARGET_BIRTHDAY_DAY = 17;
             const TARGET_BIRTHDAY_YEAR = 2025;
             const BIRTH_YEAR = 2004;
             const GIFT_PASSWORD = 'អូនជាពន្លឺនៃបង';
 
-            // ===== DOM REFERENCES =====
             const birthdayText = document.getElementById('birthdayText');
             const countdown = document.getElementById('countdown');
             const daysEl = document.getElementById('days');
@@ -1614,50 +1587,57 @@
             const musicBtn = document.getElementById('musicBtn');
             const musicLabel = document.getElementById('musicLabel');
 
-            // ===== GIFT COLLECTION - SPACE THEMED =====
+            // ===== NEW GIFT COLLECTION - MEANINGFUL & ROMANTIC =====
             const GIFT_COLLECTION = [{
-                icon: '🚀',
-                title: 'យានអវកាសទៅកាន់ភពសុបិន',
-                desc: 'បងនឹងនាំអូនហោះទៅកាន់ភពដែលមានតែសុភមង្គល 🌌'
+                icon: '💖',
+                title: 'បេះដូងពេញដោយក្តីស្រឡាញ់',
+                desc: 'បងស្រឡាញ់អូនច្រើនជាងផ្កាយទាំងអស់នៅលើមេឃ 🌟'
+            }, {
+                icon: '🌹',
+                title: 'ផ្កាកុលាបពណ៌ក្រហម ៩៩ ដើម',
+                desc: 'តំណាងឲ្យសេចក្ដីស្រឡាញ់ដ៏ជ្រាលជ្រៅគ្មានទីបញ្ចប់ 💕'
+            }, {
+                icon: '💎',
+                title: 'ពេជ្រនៃក្តីស្រឡាញ់ដ៏មានតម្លៃ',
+                desc: 'អូនគឺជាតម្លៃដ៏ថ្លៃថ្លាបំផុតក្នុងជីវិតបង ✨'
             }, {
                 icon: '🌌',
-                title: 'Galaxy នៃសេចក្ដីស្រឡាញ់',
-                desc: 'សេចក្ដីស្រឡាញ់របស់បងចំពោះអូនធំដូច Galaxy គ្មានទីបញ្ចប់ 💫'
+                title: 'ចក្រវាលនៃក្តីសុបិន',
+                desc: 'បងនឹងនាំអូនទៅកាន់ចក្រវាលដែលពោរពេញទៅដោយសុភមង្គល 🚀'
             }, {
                 icon: '☀️',
-                title: 'ពន្លឺព្រះអាទិត្យដ៏កក់ក្តៅ',
-                desc: 'ដូចជាព្រះអាទិត្យដែលបំភ្លឺពិភពលោក អូនគឺជាពន្លឺនៃជីវិតបង 🌞'
+                title: 'ពន្លឺព្រះអាទិត្យនៃជីវិត',
+                desc: 'អូនគឺជាពន្លឺដែលបំភ្លឺផ្លូវជីវិតបងរាល់ថ្ងៃ 🌞'
             }, {
-                icon: '🛸',
-                title: 'UFO នាំមកនូវអព្ភូតហេតុ',
-                desc: 'អ្វីដែលពិសេសបំផុតក្នុងចក្រវាលគឺអូន 👽'
+                icon: '🌙',
+                title: 'ពន្លឺព្រះចន្ទ្រាដ៏ទន់ភ្លន់',
+                desc: 'ដូចជាពន្លឺព្រះចន្ទ្រា បងនឹងនៅក្បែរអូនក្នុងរាត្រីដ៏ស្ងប់ 🌙'
             }, {
-                icon: '🌠',
-                title: 'ផ្កាយដុះកន្ទុយនាំសំណាង',
-                desc: 'ពេលអូនឃើញផ្កាយដុះកន្ទុយ សូមឲ្យអូនបានសំណាងល្អជានិច្ច ✨'
+                icon: '🌈',
+                title: 'ឥន្ទធនូនៃក្តីសង្ឃឹម',
+                desc: 'សូមឲ្យអូនមានសុភមង្គលគ្រប់ពណ៌នៃឥន្ទធនូ 🌈'
             }, {
-                icon: '🪐',
-                title: 'Saturn Ring នៃក្តីស្រឡាញ់',
-                desc: 'សេចក្ដីស្រឡាញ់របស់បងព័ទ្ធជុំវិញអូនដូចរង្វង់របស់ភពសៅរ៍ 💕'
+                icon: '🦋',
+                title: 'សេរីភាពដូចមេអំបៅ',
+                desc: 'សូមឲ្យអូនហោះហើរទៅរកសុបិនដោយសេរី 🦋'
             }, {
                 icon: '💫',
-                title: 'ក្តីស្រឡាញ់ភ្លឺដូចផ្កាយ',
-                desc: 'បងនឹងស្រឡាញ់អូនរហូតដរាបណាផ្កាយនៅលើមេឃ 🌟'
+                title: 'ផ្កាយនៃក្តីស្រឡាញ់អស់កល្ប',
+                desc: 'បងនឹងស្រឡាញ់អូនដរាបណាផ្កាយនៅលើមេឃ 🌟'
             }, {
-                icon: '👽',
-                title: 'ជនបរទេសដែលស្រឡាញ់អូន',
-                desc: 'បងអាចជាមនុស្សក្រៅភព ប៉ុន្តែស្នេហ៍របស់បងគឺពិតប្រាកដ 🛸'
+                icon: '🤗',
+                title: 'ការឱបដ៏កក់ក្តៅអស់កល្ប',
+                desc: 'ឱបអូនឲ្យជិត ហើយសន្យាថានឹងមិនដែលលែងអូនឡើយ 💕'
             }, {
-                icon: '🌕',
-                title: 'ពន្លឺព្រះចន្ទ្រាដ៏ទន់ភ្លន់',
-                desc: 'ដូចជាពន្លឺព្រះចន្ទ្រាដែលបំភ្លឺផ្លូវអូនក្នុងរាត្រី 🌙'
+                icon: '🎵',
+                title: 'បទចម្រៀងនៃក្តីស្រឡាញ់',
+                desc: 'បទចម្រៀងដែលបងនិពន្ធឡើងសម្រាប់តែអូនម្នាក់គត់ 🎶'
             }, {
-                icon: '🛰️',
-                title: 'ផ្កាយរណបនៃក្តីសុបិន',
-                desc: 'បងនឹងនៅក្បែរអូន ដូចផ្កាយរណបដែលវិលជុំវិញអូនជានិច្ច 📡'
+                icon: '📖',
+                title: 'រឿងនិទាននៃក្តីស្រឡាញ់របស់យើង',
+                desc: 'រឿងរ៉ាវស្នេហ៍ដ៏ស្រស់ស្អាតដែលបងនិងអូនបានសរសេរជាមួយគ្នា 💝'
             }];
 
-            // ===== COUNTDOWN LOGIC =====
             function startCountdown() {
                 const nextBirthdayDate = new Date(TARGET_BIRTHDAY_YEAR, TARGET_BIRTHDAY_MONTH, TARGET_BIRTHDAY_DAY);
                 const today = new Date();
@@ -1679,7 +1659,7 @@
                 } else if (isTargetBirthdayToday) {
                     const age = today.getFullYear() - BIRTH_YEAR;
                     birthdayText.innerHTML = `
-                        <span class="highlight">🚀 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🚀</span>
+                        <span class="highlight">🎊 រីករាយថ្ងៃកំណើតទី ${age} ឆ្នាំ 🎊</span>
                         <br><span style="font-size:1.2rem;color:#ffd700;">17 ធ្នូ 2025</span>
                         <br><span style="font-size:1rem;color:rgba(255,255,255,0.8);display:block;margin-top:10px;">
                             <i class="fas fa-heart" style="color:#ff6b6b;"></i>
@@ -1697,7 +1677,7 @@
                         </span>
                     `;
                     countdown.style.display = 'none';
-                    createConfetti(300);
+                    createConfetti(350);
                     giftControls.style.display = 'flex';
                     if (giftPassword) giftPassword.focus();
                     if (window.birthdayCountdownInterval) {
@@ -1749,8 +1729,7 @@
                 secondsEl.textContent = seconds.toString().padStart(2, '0');
             }
 
-            // ===== CONFETTI =====
-            function createConfetti(count = 300) {
+            function createConfetti(count = 350) {
                 const colors = ['#ff6b6b', '#ffd700', '#a18cd1', '#fbc2eb', '#ff9a9e', '#fad0c4', '#ffecd2', '#a8edea',
                     '#667eea', '#764ba2', '#f093fb', '#4facfe', '#ffd700', '#ff6b6b'
                 ];
@@ -1806,12 +1785,11 @@
                 }, duration * 1000 + 100);
             }
 
-            // ===== GIFT LOGIC =====
             function revealGift() {
                 const gift = GIFT_COLLECTION[Math.floor(Math.random() * GIFT_COLLECTION.length)];
 
                 giftBox.classList.add('gift-open');
-                createConfetti(200);
+                createConfetti(250);
 
                 giftResult.style.display = 'block';
                 giftResultIcon.textContent = gift.icon;
@@ -1830,7 +1808,7 @@
 
                 setTimeout(() => {
                     giftBox.classList.remove('gift-open');
-                }, 3500);
+                }, 4000);
             }
 
             function tryUnlockFromInteraction(showNotYetMessage = true) {
@@ -1861,14 +1839,13 @@
                     giftResult.style.display = 'block';
                     giftResultIcon.textContent = '❌';
                     giftResultAmount.textContent = 'ពាក្យសម្ងាត់មិនត្រឹមត្រូវ';
-                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 👽';
+                    giftSmallMsg.textContent = 'សូមព្យាយាមម្តងទៀត 💪';
                     setTimeout(() => {
                         giftResult.style.display = 'none';
                     }, 2500);
                 }
             }
 
-            // ===== EVENT LISTENERS =====
             if (giftBoxWrapper) {
                 giftBoxWrapper.addEventListener('click', () => {
                     if (giftControls.style.display === 'none') {
@@ -1892,7 +1869,6 @@
                 });
             }
 
-            // ===== BACKGROUND MUSIC =====
             const bgAudio = document.createElement('audio');
             bgAudio.id = 'bgAudio';
             bgAudio.src = 'music/Happy.mp3';
@@ -1918,7 +1894,6 @@
                 }
             });
 
-            // ===== INIT =====
             startCountdown();
 
             const today = new Date();

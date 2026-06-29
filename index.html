@@ -1,86 +1,579 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>រីករាយថ្ងៃកំណើត ស៊ុយ សេរីកាន់ន្និកា</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Koulen for Khmer text -->
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+    
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; background: #02050A; overflow: hidden; }
-
-        /* បង្កើត Nebula ដ៏ស្រស់ស្អាត */
-        .nebula {
-            position: absolute; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 15% 50%, rgba(74, 0, 224, 0.4), transparent 30%),
-                radial-gradient(circle at 85% 30%, rgba(255, 0, 85, 0.4), transparent 30%),
-                radial-gradient(circle at 50% 80%, rgba(0, 212, 255, 0.3), transparent 40%);
-            filter: blur(80px);
-            animation: drift 20s infinite alternate;
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Koulen', sans-serif;
         }
 
-        @keyframes drift {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.2) translate(-5%, -5%); }
+        body {
+            background: #0f0c29;
+            background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* ផ្កាយរាប់ពាន់ដែលភ្លឺចែងចាំង */
-        .starfield { position: absolute; width: 100%; height: 100%; z-index: 1; }
-        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.8; animation: twinkle 1.5s infinite; }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-
-        /* យានអវកាសបែប Futuristic */
-        .spaceship-container {
-            position: absolute; top: 30%; left: -200px;
-            z-index: 10;
-            filter: drop-shadow(0 0 30px #00d4ff);
-            animation: warp-speed 12s linear infinite;
-        }
-        
-        .spaceship-art { font-size: 100px; }
-
-        @keyframes warp-speed {
-            0% { transform: translateX(0) scale(1); }
-            50% { transform: translateX(110vw) scale(1.2); }
-            100% { transform: translateX(110vw) scale(0.5); }
-        }
-
-        /* ពន្លឺព្រះអាទិត្យ */
-        .sun {
-            position: absolute; top: -100px; right: -100px;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, #ffcc00, #ff6600, transparent);
-            border-radius: 50%;
-            box-shadow: 0 0 200px #ff6600;
+        /* Animated Background Particles */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: twinkle 4s infinite;
+            opacity: 0.5;
         }
 
-        .title {
-            position: absolute; bottom: 50px; width: 100%; text-align: center;
-            color: white; font-family: sans-serif; letter-spacing: 5px;
-            text-shadow: 0 0 20px #fff; z-index: 20;
+        @keyframes twinkle {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-200px); }
+        }
+
+        /* Main Container - Glassmorphism */
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 20px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header Styling */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 154, 158, 0.3);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .time-val {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            display: block;
+        }
+
+        .time-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        /* Gift Box Section */
+        .gift-section {
+            margin-top: 30px;
+            perspective: 1000px;
+        }
+
+        .gift-box {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5253);
+            margin: 0 auto;
+            position: relative;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.5s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .ribbon-vertical {
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background: #ffd700;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ribbon-horizontal {
+            position: absolute;
+            height: 30px;
+            width: 100%;
+            background: #ffd700;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .lid {
+            position: absolute;
+            top: -20px;
+            width: 170px;
+            height: 40px;
+            background: #ff4757;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+            z-index: 2;
+        }
+
+        .lid::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background: #ffd700;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bow {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: #ffd700;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+            z-index: 3;
+        }
+
+        /* Open State Animation */
+        .gift-box.open .lid {
+            transform: translateY(-80px) rotate(-10deg);
+            opacity: 0;
+        }
+
+        .gift-message {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .message-text {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .password-input {
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            width: 70%;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .unlock-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: none;
+            background: linear-gradient(to right, #ffd700, #f09819);
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+            font-size: 1rem;
+        }
+
+        .unlock-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Music Button */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(360deg);
+        }
+
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .time-box { min-width: 60px; padding: 10px; }
+            .time-val { font-size: 1.5rem; }
+            .gift-box { width: 120px; height: 120px; }
+            .lid { width: 140px; }
         }
     </style>
 </head>
 <body>
-    <div class="nebula"></div>
-    <div class="sun"></div>
-    <div class="starfield" id="stars"></div>
-    
-    <div class="spaceship-container">
-        <div class="spaceship-art">🚀🎅✨</div>
+
+    <!-- Background Elements -->
+    <div class="stars"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Audio Element (Hidden) -->
+    <!-- ដាក់ File ភ្លេងរបស់អ្នកនៅទីនេះ ឬប្រើ Link -->
+    <audio id="bgMusic" loop>
+        <source src="HappyBirthday.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <header>
+            <h1>🎉 រីករាយថ្ងៃកំណើត 🎉</h1>
+            <h2>ស៊ុយ សេរីកាន់ន្និកា</h2>
+            <p class="subtitle">
+                <i class="fas fa-heart" style="color: #ff6b6b;"></i> 
+                ថ្ងៃពិសេសសម្រាប់មនុស្សពិសេសបំផុតរបស់បង
+                <i class="fas fa-heart" style="color: #ff6b6b;"></i>
+            </p>
+        </header>
+
+        <!-- Countdown Section -->
+        <div class="countdown-container" id="countdown">
+            <div class="time-box">
+                <span class="time-val" id="days">00</span>
+                <span class="time-label">ថ្ងៃ</span>
+            </div>
+            <div class="time-box">
+                <span class="time-val" id="hours">00</span>
+                <span class="time-label">ម៉ោង</span>
+            </div>
+            <div class="time-box">
+                <span class="time-val" id="minutes">00</span>
+                <span class="time-label">នាទី</span>
+            </div>
+            <div class="time-box">
+                <span class="time-val" id="seconds">00</span>
+                <span class="time-label">វិនាទី</span>
+            </div>
+        </div>
+
+        <!-- Message when countdown ends (Hidden by default) -->
+        <div id="birthdayMessage" style="display: none;">
+            <h2 style="color: #ff9a9e; font-size: 2rem;">🎂 Happy Birthday! 🎂</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                សូមឱ្យអូនមានសុខភាពល្អ ជោគលាភមហាសាល និងស្រលាញ់បងជារៀងរហូតណាអូនសម្លាញ់! 💖
+            </p>
+        </div>
+
+        <!-- Gift Box Section -->
+        <div class="gift-section">
+            <div class="gift-box" id="giftBox" onclick="openGift()">
+                <div class="lid">
+                    <div class="bow"><i class="fas fa-gift"></i></div>
+                </div>
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-horizontal"></div>
+                <div style="z-index: 1; font-size: 0.9rem; color: rgba(255,255,255,0.8);">
+                    ចុចដើម្បីបើក
+                </div>
+            </div>
+
+            <!-- Hidden Content inside Gift -->
+            <div class="gift-message" id="giftContent">
+                <i class="fas fa-lock" style="font-size: 2rem; color: #ffd700; margin-bottom: 10px;"></i>
+                <p class="message-text">សូមបញ្ចូលពាក្យសម្ងាត់ដើម្បីទទួលបានអំណោយ!</p>
+                <input type="password" id="passwordInput" class="password-input" placeholder="ពាក្យសម្ងាត់...">
+                <br>
+                <button class="unlock-btn" onclick="checkPassword()">បើកមើល</button>
+                
+                <div id="finalSurprise" style="display: none; margin-top: 20px;">
+                    <h3 style="color: #ffd700;">🎁 អំណោយពិសេស 🎁</h3>
+                    <p style="font-size: 1.1rem; margin-top: 10px;">
+                        ប័ណ្ណ Upay $520 💸<br>
+                        (តែនេះជាប័ណ្ណបេះបិតទេ ប៉ុន្តែបងស្រលាញ់អូនពិតប្រាកដ!)
+                    </p>
+                    <i class="fas fa-heart" style="font-size: 3rem; color: red; margin-top: 15px; animation: beat 1s infinite;"></i>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="title">CHRISTMAS IN DEEP SPACE</div>
+    <!-- Music Control -->
+    <div class="music-btn" onclick="toggleMusic()">
+        <i class="fas fa-music" id="musicIcon"></i>
+    </div>
 
     <script>
-        const starContainer = document.getElementById('stars');
-        for(let i=0; i<300; i++) {
-            let s = document.createElement('div');
-            s.className = 'star';
-            let size = Math.random() * 2 + 'px';
-            s.style.width = s.style.height = size;
-            s.style.left = Math.random() * 100 + 'vw';
-            s.style.top = Math.random() * 100 + 'vh';
-            s.style.animationDelay = Math.random() * 2 + 's';
-            starContainer.appendChild(s);
+        // --- Configuration ---
+        // កំណត់ថ្ងៃកំណើត (Year, Month-1, Day)
+        // ចំណាំ: Month ចាប់ផ្តើមពី 0 (មករា=0, ធ្នូ=11)
+        const targetDate = new Date("December 17, 2025 00:00:00").getTime();
+        const correctPassword = "Kannyka"; // កំណត់ពាក្យសម្ងាត់នៅទីនេះ
+
+        // --- Countdown Logic ---
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").style.display = "none";
+                document.getElementById("birthdayMessage").style.display = "block";
+                startConfetti(); // Start confetti automatically on birthday
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }, 1000);
+
+        // --- Gift Box Logic ---
+        function openGift() {
+            const box = document.getElementById('giftBox');
+            const content = document.getElementById('giftContent');
+            
+            if (!box.classList.contains('open')) {
+                box.classList.add('open');
+                setTimeout(() => {
+                    content.style.display = 'block';
+                    // Scroll to gift content smoothly
+                    content.scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            }
         }
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const surprise = document.getElementById('finalSurprise');
+            const btn = document.querySelector('.unlock-btn');
+            const msg = document.querySelector('.message-text');
+
+            if (input === correctPassword) {
+                surprise.style.display = 'block';
+                msg.style.display = 'none';
+                document.getElementById('passwordInput').style.display = 'none';
+                btn.style.display = 'none';
+                startConfetti(); // Trigger confetti
+                playMusic(); // Auto play music if unlocked
+            } else {
+                alert("ពាក្យសម្ងាត់មិនត្រឹមត្រូវទេ! សាកម្តងទៀតមើល៍ 😉");
+                document.getElementById('passwordInput').value = "";
+            }
+        }
+
+        // --- Music Logic ---
+        const audio = document.getElementById("bgMusic");
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                document.getElementById("musicIcon").classList.remove("fa-pause");
+                document.getElementById("musicIcon").classList.add("fa-music");
+            } else {
+                audio.play().catch(e => console.log("User interaction needed first"));
+                document.getElementById("musicIcon").classList.remove("fa-music");
+                document.getElementById("musicIcon").classList.add("fa-pause");
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function playMusic() {
+            if(!isPlaying) {
+                toggleMusic();
+            }
+        }
+
+        // --- Simple Confetti Effect ---
+        const canvas = document.getElementById("confetti-canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let confetti = [];
+        const confettiCount = 300;
+        const gravity = 0.5;
+        const terminalVelocity = 5;
+        const drag = 0.075;
+        const colors = [
+            { front: 'red', back: 'darkred' },
+            { front: 'green', back: 'darkgreen' },
+            { front: 'blue', back: 'darkblue' },
+            { front: 'yellow', back: 'darkyellow' },
+            { front: 'orange', back: 'darkorange' },
+            { front: 'pink', back: 'darkpink' },
+            { front: 'purple', back: 'darkpurple' },
+            { front: 'turquoise', back: 'darkturquoise' }
+        ];
+
+        resizeCanvas = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        };
+
+        randomRange = (min, max) => Math.random() * (max - min) + min;
+
+        initConfetti = () => {
+            for (let i = 0; i < confettiCount; i++) {
+                confetti.push({
+                    color: colors[Math.floor(randomRange(0, colors.length))],
+                    dimensions: { x: randomRange(10, 20), y: randomRange(10, 30) },
+                    position: { x: randomRange(0, canvas.width), y: canvas.height - 1 },
+                    rotation: randomRange(0, 2 * Math.PI),
+                    scale: { x: 1, y: 1 },
+                    velocity: { x: randomRange(-25, 25), y: randomRange(0, -50) }
+                });
+            }
+        };
+
+        render = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            confetti.forEach((confetto, index) => {
+                let width = (confetto.dimensions.x * confetto.scale.x);
+                let height = (confetto.dimensions.y * confetto.scale.y);
+
+                ctx.translate(confetto.position.x, confetto.position.y);
+                ctx.rotate(confetto.rotation);
+
+                confetto.velocity.x -= confetto.velocity.x * drag;
+                confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
+                confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
+
+                confetto.position.x += confetto.velocity.x;
+                confetto.position.y += confetto.velocity.y;
+
+                if (confetto.position.y >= canvas.height) confetti.splice(index, 1);
+
+                if (confetto.position.x > canvas.width) confetto.position.x = 0;
+                if (confetto.position.x < 0) confetto.position.x = canvas.width;
+
+                confetto.scale.y = Math.cos(confetto.position.y * 0.1);
+                ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
+
+                ctx.fillRect(-width / 2, -height / 2, width, height);
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+            });
+
+            if (confetti.length > 0) window.requestAnimationFrame(render);
+        };
+
+        function startConfetti() {
+            initConfetti();
+            render();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
     </script>
 </body>
 </html>
